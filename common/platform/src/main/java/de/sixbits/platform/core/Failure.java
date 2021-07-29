@@ -1,13 +1,13 @@
 package de.sixbits.platform.core;
 
 public class Failure extends Exception {
-    static class NetworkConnection extends Failure {
+    public static class NetworkConnection extends Failure {
     }
 
-    static class ServerError extends Failure {
+    public static class ServerError extends Failure {
     }
 
-    static class UnauthorizedError extends Failure {
+    public static class UnauthorizedError extends Failure {
     }
 
     /**

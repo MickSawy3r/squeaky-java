@@ -21,13 +21,27 @@ public abstract class ObservableUseCase<Results, Params> extends BaseReactiveUse
      *
      * @param observer [DisposableObserver] which will be listening to the observer build
      *                 by [buildUseCaseObservable] method.
-     * @param params   Parameters (Optional) used to build/execute this use case.
+     * @param params   Parameters used to build/execute this use case.
      */
     void execute(DisposableObserver<Results> observer, Params params) {
         if (observer == null) {
             observer = new EmptyObserver<>();
         }
         Observable<Results> observable = buildUseCaseObservableWithSchedulers(params);
+        addDisposable(observable.subscribeWith(observer));
+    }
+
+    /**
+     * Executes the current use case.
+     *
+     * @param observer [DisposableObserver] which will be listening to the observer build
+     *                 by [buildUseCaseObservable] method.
+     */
+    void execute(DisposableObserver<Results> observer) {
+        if (observer == null) {
+            observer = new EmptyObserver<>();
+        }
+        Observable<Results> observable = buildUseCaseObservableWithSchedulers(null);
         addDisposable(observable.subscribeWith(observer));
     }
 

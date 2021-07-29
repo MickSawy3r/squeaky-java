@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel;
 public abstract class BaseViewModel extends ViewModel {
 
     private final MutableLiveData<Boolean> _loading = new MutableLiveData<>(false);
-    LiveData<Boolean> loading = _loading;
+    public LiveData<Boolean> loading = _loading;
 
     private final MutableLiveData<Failure> _failure = new MutableLiveData<>();
-    LiveData<Failure> failure = _failure;
+    public LiveData<Failure> failure = _failure;
 
     protected void handleFailure(Failure failure) {
         _failure.setValue(failure);
