@@ -12,7 +12,7 @@ public class PayoneerRepository {
     private final PayoneerRemoteDataSource mPayoneerRemoteDataSource;
 
     @Inject
-    PayoneerRepository(PayoneerRemoteDataSource payoneerRemoteDataSource) {
+    public PayoneerRepository(PayoneerRemoteDataSource payoneerRemoteDataSource) {
         mPayoneerRemoteDataSource = payoneerRemoteDataSource;
     }
 

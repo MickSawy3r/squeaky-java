@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Squeaky Java</string>
+
+    <string name="failure_network_connection">No Network Connection.</string>
+    <string name="failure_server_error">Server Error</string>
+    <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
+    <string name="failure_movie_non_existent">Movie Not Existent.</string>
+    <string name="not_connected_to_the_internet">Not connected to the internet!</string>
+    <string name="retry">Retry</string>
+    <string name="please_connect_to_the_internet">Please Connect to the Internet</string>
+    <string name="payment_method_logo">Payment Method Logo</string>
 </resources>

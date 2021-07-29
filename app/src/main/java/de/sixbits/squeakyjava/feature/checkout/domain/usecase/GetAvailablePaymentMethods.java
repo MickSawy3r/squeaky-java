@@ -1,6 +1,10 @@
 package de.sixbits.squeakyjava.feature.checkout.domain.usecase;
 
+import android.util.Log;
+
 import java.util.List;
+
+import javax.inject.Inject;
 
 import de.sixbits.reactive.executor.PostExecutionThread;
 import de.sixbits.reactive.executor.ThreadExecutor;
@@ -10,9 +14,10 @@ import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDat
 import io.reactivex.rxjava3.core.Single;
 
 public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethodDataModel>, Void> {
-
+    private static final String TAG = "GetAvailablePaymentMeth";
     private final PayoneerRepository mPayoneerRepository;
 
+    @Inject
     GetAvailablePaymentMethods(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,
@@ -23,7 +28,8 @@ public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethod
     }
 
     @Override
-    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle() {
+    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle(Void unused) {
+        Log.d(TAG, "buildUseCaseSingle: " + (getPostExecutionThreadScheduler() != null) + "," + (getThreadExecutorScheduler() != null));
         return mPayoneerRepository.getAvailablePaymentMethods();
     }
 }

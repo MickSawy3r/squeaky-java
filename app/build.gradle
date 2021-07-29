@@ -64,6 +64,7 @@ dependencies {
     implementation(Libraries.okHttp)
     implementation(Libraries.okHttpLoggingInterceptor)
     implementation(Libraries.rxAndroid)
+    implementation(Libraries.rxRetrofitAdapter)
     implementation(Libraries.rxJava)
     implementation(Libraries.lottie)
 

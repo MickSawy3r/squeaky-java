@@ -13,7 +13,7 @@ public class PayoneerRemoteDataSource {
     private final PayoneerApi mPayoneerApi;
 
     @Inject
-    PayoneerRemoteDataSource(PayoneerApi payoneerApi) {
+    public PayoneerRemoteDataSource(PayoneerApi payoneerApi) {
         mPayoneerApi = payoneerApi;
     }
 

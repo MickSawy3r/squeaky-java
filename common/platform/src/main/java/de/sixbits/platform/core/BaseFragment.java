@@ -15,11 +15,11 @@ public abstract class BaseFragment extends Fragment {
     void onBackPressed() {
     }
 
-    void showProgress() {
+    protected void showProgress() {
         progressStatus(View.VISIBLE);
     }
 
-    void hideProgress() {
+    protected void hideProgress() {
         progressStatus(View.GONE);
     }
 
@@ -32,7 +32,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-    void notify(@StringRes Integer message) {
+    protected void notify(@StringRes Integer message) {
         if (getView() != null) {
             Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
         }

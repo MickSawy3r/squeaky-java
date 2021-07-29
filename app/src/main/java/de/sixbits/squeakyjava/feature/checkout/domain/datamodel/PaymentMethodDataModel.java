@@ -2,18 +2,18 @@ package de.sixbits.squeakyjava.feature.checkout.domain.datamodel;
 
 public class PaymentMethodDataModel {
     private final String name;
-    private final String imageUrl;
+    private final String logoUrl;
 
-    public PaymentMethodDataModel(String name, String imageUrl) {
+    public PaymentMethodDataModel(String name, String logoUrl) {
         this.name = name;
-        this.imageUrl = imageUrl;
+        this.logoUrl = logoUrl;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 }

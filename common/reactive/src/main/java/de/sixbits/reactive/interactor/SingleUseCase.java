@@ -7,29 +7,23 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase {
 
-    public SingleUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    public SingleUseCase(
+            ThreadExecutor threadExecutor,
+            PostExecutionThread postExecutionThread
+    ) {
         super(threadExecutor, postExecutionThread);
     }
 
     /**
-     * Builds an [Observable] which will be used when executing the current [ObservableUseCase].
+     * Builds an [Single] which will be used when executing the current [SingleUseCase].
      */
-    public Single<Results> buildUseCaseSingle(Params params) {
-        return null;
-    }
-
-    /**
-     * Builds an [Observable] which will be used when executing the current [ObservableUseCase].
-     */
-    public Single<Results> buildUseCaseSingle() {
-        return null;
-    }
+    public abstract Single<Results> buildUseCaseSingle(Params params);
 
     /**
      * Executes the current use case.
      *
-     * @param observer [DisposableObserver] which will be listening to the observer build
-     *                 by [buildUseCaseObservable] method.
+     * @param observer [DisposableSingleObserver] which will be listening to the observer build
+     *                 by [buildUseCaseSingle] method.
      * @param params   Parameters (Optional) used to build/execute this use case.
      */
     public void execute(DisposableSingleObserver<Results> observer, Params params) {
@@ -40,16 +34,8 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
         addDisposable(single.subscribeWith(observer));
     }
 
-    public void execute(DisposableSingleObserver<Results> observer) {
-        if (observer == null) {
-            observer = new EmptySingleObserver<>();
-        }
-        Single<Results> single = buildUseCaseSingleWithSchedulers(null);
-        addDisposable(single.subscribeWith(observer));
-    }
-
     /**
-     * Builds an [Observable] which will be used when executing the current [ObservableUseCase].
+     * Builds a [Single] which will be used when executing the current [SingleUseCase].
      * With provided Schedulers
      */
     private Single<Results> buildUseCaseSingleWithSchedulers(Params params) {

@@ -7,9 +7,9 @@ import com.squareup.picasso.Picasso;
 import de.sixbits.platform.R;
 
 
-public class View {
+public class ViewHelpers {
 
-    void loadFromUrl(ImageView iv, String url) {
+    public static void loadFromUrl(ImageView iv, String url) {
         if (url.isEmpty()) {
             return;
         }
@@ -19,7 +19,7 @@ public class View {
                 .into(iv);
     }
 
-    void loadCircularFromUrl(ImageView iv, String url) {
+    public static void loadCircularFromUrl(ImageView iv, String url) {
         if (url.isEmpty()) {
             return;
         }

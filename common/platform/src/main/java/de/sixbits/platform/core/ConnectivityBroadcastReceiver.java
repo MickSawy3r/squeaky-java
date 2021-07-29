@@ -7,7 +7,7 @@ import android.content.Intent;
 public class ConnectivityBroadcastReceiver extends BroadcastReceiver {
     private final ConnectivityCallback mConnectivityCallback;
 
-    ConnectivityBroadcastReceiver(ConnectivityCallback connectivityCallback) {
+    public ConnectivityBroadcastReceiver(ConnectivityCallback connectivityCallback) {
         mConnectivityCallback = connectivityCallback;
     }
 
