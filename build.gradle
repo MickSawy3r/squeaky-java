@@ -1,0 +1,35 @@
+apply from: 'buildsystem/dependencies.gradle'
+
+buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://oss.jfrog.org/libs-snapshot")
+        }
+    }
+    dependencies {
+        def buildToolsVersion = "4.1.0"
+        def hiltVersion = "2.37"
+        def realmVersion = "10.6.0"
+
+        classpath("com.android.tools.build:gradle:${buildToolsVersion}")
+        classpath("io.realm:realm-gradle-plugin:${realmVersion}")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${hiltVersion}")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://oss.jfrog.org/libs-snapshot")
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,15 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+    annotationProcessor(Libraries.lifecycleCompiler)
+
+    implementation(Libraries.appCompat)
+    implementation(Libraries.material)
+    implementation(Libraries.constraintLayout)
+    implementation(Libraries.liveDataCommonJava8)
+    implementation(Libraries.liveData)
+    implementation(Libraries.picasso)
+
+    testImplementation(TestLibraries.robolectric)
+    testImplementation(TestLibraries.junit4)
+}

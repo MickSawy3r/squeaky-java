@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.8">
+      <module name="Squeaky_Java.app" target="12" />
+      <module name="Squeaky_Java.common.platform" target="12" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

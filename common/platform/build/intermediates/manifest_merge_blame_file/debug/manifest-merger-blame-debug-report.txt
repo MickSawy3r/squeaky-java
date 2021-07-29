@@ -1,0 +1,24 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="de.sixbits.platform"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml:4:5-79
+11-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml:4:22-76
+12
+13    <application>
+13-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml:5:5-7:19
+14        <activity android:name="de.sixbits.platform.core.ContainerActivity" />
+14-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml:6:9-60
+14-->C:\Users\moham\AndroidStudioProjects\SqueakyJava\common\platform\src\main\AndroidManifest.xml:6:19-57
+15    </application>
+16
+17</manifest>

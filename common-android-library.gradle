@@ -1,0 +1,25 @@
+def BuildPlugins = rootProject.ext.BuildPlugins
+def AndroidSdk = rootProject.ext.AndroidSdk
+def AndroidClient = rootProject.ext.AndroidClient
+
+apply plugin: "com.android.library"
+
+android {
+    compileSdkVersion(AndroidSdk.compileSdk)
+
+    defaultConfig {
+        minSdkVersion(AndroidSdk.minSdk)
+        targetSdkVersion(AndroidSdk.targetSdk)
+        versionCode = AndroidClient.versionCode
+        versionName = AndroidClient.versionName
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}

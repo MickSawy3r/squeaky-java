@@ -1,0 +1,30 @@
+de/sixbits/platform/core/ConnectivityCallback.java
+ de.sixbits.platform.core.ConnectivityCallback
+de/sixbits/platform/helpers/ContextHelper.java
+ de.sixbits.platform.helpers.ContextHelper
+de/sixbits/platform/core/Failure.java
+ de.sixbits.platform.core.Failure
+ de.sixbits.platform.core.Failure$FeatureFailure
+ de.sixbits.platform.core.Failure$NetworkConnection
+ de.sixbits.platform.core.Failure$ServerError
+ de.sixbits.platform.core.Failure$UnauthorizedError
+de/sixbits/platform/core/View.java
+ de.sixbits.platform.core.View
+de/sixbits/platform/databinding/ActivityLayoutBinding.java
+ de.sixbits.platform.databinding.ActivityLayoutBinding
+de/sixbits/platform/BuildConfig.java
+ de.sixbits.platform.BuildConfig
+de/sixbits/platform/core/NetworkHandler.java
+ de.sixbits.platform.core.NetworkHandler
+de/sixbits/platform/core/BaseViewModel.java
+ de.sixbits.platform.core.BaseViewModel
+de/sixbits/platform/helpers/FragmentHelper.java
+ de.sixbits.platform.helpers.FragmentHelper
+de/sixbits/platform/core/CircleTransform.java
+ de.sixbits.platform.core.CircleTransform
+de/sixbits/platform/core/ConnectivityBroadcastReceiver.java
+ de.sixbits.platform.core.ConnectivityBroadcastReceiver
+de/sixbits/platform/core/BaseFragment.java
+ de.sixbits.platform.core.BaseFragment
+de/sixbits/platform/core/ContainerActivity.java
+ de.sixbits.platform.core.ContainerActivity
