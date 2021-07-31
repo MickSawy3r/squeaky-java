@@ -11,4 +11,5 @@
     <string name="payment_method_logo">Payment Method Logo</string>
     <string name="payment">Payment</string>
     <string name="payment_method_clicked">Payment Method Clicked!</string>
+    <string name="empty_list">Empty List</string>
 </resources>

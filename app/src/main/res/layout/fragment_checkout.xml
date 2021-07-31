@@ -36,4 +36,28 @@
             app:lottie_fileName="no_internet.json"
             app:lottie_loop="true" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_list"
+            android:textAlignment="center" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="no_internet.json"
+            app:lottie_loop="true" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

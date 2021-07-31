@@ -107,16 +107,17 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     }
 
     void renderResult(List<PaymentMethodDataModel> methods) {
-        mPaymentMethodListAdapter.replaceItems(methods);
-
-        mUiBinding.rvPaymentMethods.setVisibility(View.VISIBLE);
-        mUiBinding.llNoInternet.setVisibility(View.GONE);
+        if (methods.size() > 0) {
+            mPaymentMethodListAdapter.replaceItems(methods);
+            showDataViews();
+        } else {
+            showEmptyListViews();
+        }
     }
 
     void handleFailure(Failure failure) {
         if (failure instanceof Failure.NetworkConnection) {
-            mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
-            mUiBinding.llNoInternet.setVisibility(View.VISIBLE);
+            showNoInternetViews();
         } else {
             notify(R.string.failure_server_error);
         }
@@ -133,5 +134,23 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     @Override
     public void onConnectionChange(Boolean connected) {
         mCheckoutViewModel.setIsNetworkAvailable(connected);
+    }
+
+    void showEmptyListViews() {
+        mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
+        mUiBinding.llEmptyList.setVisibility(View.VISIBLE);
+        mUiBinding.llNoInternet.setVisibility(View.GONE);
+    }
+
+    void showDataViews() {
+        mUiBinding.rvPaymentMethods.setVisibility(View.VISIBLE);
+        mUiBinding.llEmptyList.setVisibility(View.GONE);
+        mUiBinding.llNoInternet.setVisibility(View.GONE);
+    }
+
+    void showNoInternetViews() {
+        mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
+        mUiBinding.llEmptyList.setVisibility(View.GONE);
+        mUiBinding.llNoInternet.setVisibility(View.VISIBLE);
     }
 }

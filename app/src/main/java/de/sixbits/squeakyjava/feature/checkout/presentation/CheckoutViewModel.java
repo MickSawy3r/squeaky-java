@@ -27,6 +27,7 @@ public class CheckoutViewModel extends BaseViewModel {
     public LiveData<List<PaymentMethodDataModel>> data = _data;
 
     private Boolean isConnected = false;
+    private Boolean isRequestOnQue = false;
 
     @Inject
     CheckoutViewModel(GetAvailablePaymentMethods getAvailablePaymentMethods) {
@@ -38,15 +39,16 @@ public class CheckoutViewModel extends BaseViewModel {
         if (isConnected) {
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver(), null);
         } else {
+            isRequestOnQue = true;
             handleFailure(new Failure.NetworkConnection());
         }
     }
 
     void setIsNetworkAvailable(Boolean connected) {
-        Log.d(TAG, "setIsNetworkAvailable: " + connected);
         isConnected = connected;
 
-        if (connected) {
+        if (isRequestOnQue) {
+            isRequestOnQue = false;
             getAvailablePaymentMethods();
         }
     }
