@@ -28,6 +28,11 @@
         <activity
             android:name=".feature.checkout.presentation.CheckoutActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".feature.checkout.presentation.PaymentFormActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

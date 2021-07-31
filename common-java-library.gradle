@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'pmd'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

@@ -34,6 +34,7 @@ public class CheckoutViewModel extends BaseViewModel {
     }
 
     void getAvailablePaymentMethods() {
+        setLoading(true);
         if (isConnected) {
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver(), null);
         } else {
@@ -56,12 +57,14 @@ public class CheckoutViewModel extends BaseViewModel {
         public void onSuccess(@NonNull List<PaymentMethodDataModel> paymentMethodDataModels) {
             Log.d(TAG, "onSuccess: ");
             _data.postValue(paymentMethodDataModels);
+            setLoading(false);
         }
 
         @Override
         public void onError(@NonNull Throwable e) {
             Log.d(TAG, "onError: " + e.getMessage() + "\n\n" + Arrays.toString(e.getStackTrace()));
             handleFailure(new Failure.NetworkConnection());
+            setLoading(false);
         }
     }
 }

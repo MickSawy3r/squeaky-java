@@ -9,4 +9,6 @@
     <string name="retry">Retry</string>
     <string name="please_connect_to_the_internet">Please Connect to the Internet</string>
     <string name="payment_method_logo">Payment Method Logo</string>
+    <string name="payment">Payment</string>
+    <string name="payment_method_clicked">Payment Method Clicked!</string>
 </resources>

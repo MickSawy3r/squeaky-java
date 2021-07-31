@@ -1,5 +1,6 @@
 package de.sixbits.platform.core;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.StringRes;
@@ -11,8 +12,9 @@ import com.google.android.material.snackbar.Snackbar;
 import de.sixbits.platform.R;
 
 public abstract class BaseFragment extends Fragment {
+    private static final String TAG = "BaseFragment";
 
-    void onBackPressed() {
+    public void onBackPressed() {
     }
 
     protected void showProgress() {
@@ -24,10 +26,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private void progressStatus(Integer viewStatus) {
-        if (getActivity() != null) {
-            if (getActivity() instanceof ContainerActivity) {
-                ((ContainerActivity) getActivity()).uiBinding.progress.setVisibility(viewStatus);
-            }
+        if (getActivity() != null & getActivity() instanceof ContainerActivity) {
+            Log.d(TAG, "progressStatus: ");
+            ((ContainerActivity) getActivity()).uiBinding.progress.setVisibility(viewStatus);
         }
     }
 

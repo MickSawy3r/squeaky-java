@@ -1,8 +1,6 @@
 package de.sixbits.squeakyjava.feature.checkout.presentation;
 
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +20,7 @@ import de.sixbits.platform.core.BaseFragment;
 import de.sixbits.platform.core.ConnectivityBroadcastReceiver;
 import de.sixbits.platform.core.ConnectivityCallback;
 import de.sixbits.platform.core.Failure;
+import de.sixbits.platform.helpers.FragmentHelper;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.core.navigation.Navigator;
 import de.sixbits.squeakyjava.databinding.FragmentCheckoutBinding;
@@ -74,14 +73,9 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            Log.d(TAG, "onResume: Attach Broadcast To Activity");
-            getActivity().registerReceiver(
-                    mConnectivityBroadcastReceiver,
-                    new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
-            );
-            getActivity().registerReceiver(
-                    mConnectivityBroadcastReceiver,
-                    new IntentFilter("android.net.wifi.WIFI_STATE_CHANGED")
+            FragmentHelper.attachConnectivityBroadcastReceiver(
+                    getActivity(),
+                    mConnectivityBroadcastReceiver
             );
         }
     }
@@ -90,8 +84,10 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     public void onPause() {
         super.onPause();
         if (getActivity() != null) {
-            Log.d(TAG, "onPause: DeAttach Broadcast To Activity");
-            getActivity().unregisterReceiver(mConnectivityBroadcastReceiver);
+            FragmentHelper.deAttachConnectivityBroadcastReceiver(
+                    getActivity(),
+                    mConnectivityBroadcastReceiver
+            );
         }
     }
 
@@ -100,8 +96,13 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     }
 
     void setupListeners() {
-        mPaymentMethodListAdapter.setOnClickListener(paymentMethodDataModel ->
-                Log.d(TAG, "setupListeners: " + paymentMethodDataModel.getName())
+        mPaymentMethodListAdapter.setOnClickListener(paymentMethodDataModel -> {
+                    if (getContext() != null) {
+                        navigator.showPaymentForm(getContext(), paymentMethodDataModel);
+                    } else {
+                        notify(R.string.payment_method_clicked);
+                    }
+                }
         );
     }
 

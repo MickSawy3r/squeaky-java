@@ -3,6 +3,7 @@ def AndroidSdk = rootProject.ext.AndroidSdk
 def AndroidClient = rootProject.ext.AndroidClient
 
 apply plugin: "com.android.library"
+apply plugin: "pmd"
 
 android {
     compileSdkVersion(AndroidSdk.compileSdk)

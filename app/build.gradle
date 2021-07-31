@@ -1,5 +1,6 @@
 apply plugin: rootProject.ext.BuildPlugins.androidApplication
 apply plugin: rootProject.ext.BuildPlugins.androidHilt
+apply plugin: "pmd"
 
 android {
     compileSdkVersion rootProject.ext.compileSdk
