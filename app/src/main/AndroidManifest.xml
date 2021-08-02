@@ -26,11 +26,11 @@
         </activity>
 
         <activity
-            android:name=".feature.checkout.presentation.CheckoutActivity"
+            android:name=".feature.checkout.PaymentMethodActivity"
             android:exported="false" />
 
         <activity
-            android:name=".feature.checkout.presentation.PaymentFormActivity"
+            android:name=".feature.checkout.PaymentFormActivity"
             android:exported="false" />
 
     </application>

@@ -1,6 +1,5 @@
-package de.sixbits.squeakyjava.feature.checkout.presentation;
+package de.sixbits.squeakyjava.feature.checkout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -17,7 +16,6 @@ import javax.inject.Inject;
 
 import de.sixbits.platform.core.ViewHelpers;
 import de.sixbits.squeakyjava.databinding.ItemPaymentMethodBinding;
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
 
 public class PaymentMethodListAdapter extends RecyclerView.Adapter<PaymentMethodListAdapter.PaymentMethodItemVH> {
     private static final String TAG = "PaymentMethodListAdapte";

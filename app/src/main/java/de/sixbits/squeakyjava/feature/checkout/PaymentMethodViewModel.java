@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.presentation;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import android.util.Log;
 
@@ -13,13 +13,11 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import de.sixbits.platform.core.BaseViewModel;
 import de.sixbits.platform.core.Failure;
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
-import de.sixbits.squeakyjava.feature.checkout.domain.usecase.GetAvailablePaymentMethods;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 @HiltViewModel
-public class CheckoutViewModel extends BaseViewModel {
+public class PaymentMethodViewModel extends BaseViewModel {
     private static final String TAG = "CheckoutViewModel";
     private final GetAvailablePaymentMethods mGetAvailablePaymentMethods;
 
@@ -30,7 +28,7 @@ public class CheckoutViewModel extends BaseViewModel {
     private Boolean isRequestOnQue = false;
 
     @Inject
-    CheckoutViewModel(GetAvailablePaymentMethods getAvailablePaymentMethods) {
+    PaymentMethodViewModel(GetAvailablePaymentMethods getAvailablePaymentMethods) {
         mGetAvailablePaymentMethods = getAvailablePaymentMethods;
     }
 

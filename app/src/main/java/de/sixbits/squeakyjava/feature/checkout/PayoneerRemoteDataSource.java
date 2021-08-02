@@ -1,10 +1,9 @@
-package de.sixbits.squeakyjava.feature.checkout.datasource.network;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
 import io.reactivex.rxjava3.core.Single;
 
 public class PayoneerRemoteDataSource {

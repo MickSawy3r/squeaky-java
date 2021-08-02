@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.presentation;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 import de.sixbits.platform.core.BaseFragment;
 import de.sixbits.platform.helpers.FragmentHelper;
 import de.sixbits.squeakyjava.databinding.FragmentPaymentBinding;
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
 
 @AndroidEntryPoint
 public class PaymentFormFragment extends BaseFragment {

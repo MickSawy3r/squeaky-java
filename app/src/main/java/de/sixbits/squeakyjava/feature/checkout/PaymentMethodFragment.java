@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.presentation;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,10 +24,9 @@ import de.sixbits.platform.helpers.FragmentHelper;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.core.navigation.Navigator;
 import de.sixbits.squeakyjava.databinding.FragmentCheckoutBinding;
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
 
 @AndroidEntryPoint
-public class CheckoutFragment extends BaseFragment implements ConnectivityCallback {
+public class PaymentMethodFragment extends BaseFragment implements ConnectivityCallback {
     private static final String TAG = "CheckoutFragment";
 
     @Inject
@@ -37,19 +36,19 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
     PaymentMethodListAdapter mPaymentMethodListAdapter;
 
     FragmentCheckoutBinding mUiBinding;
-    CheckoutViewModel mCheckoutViewModel;
+    PaymentMethodViewModel mPaymentMethodViewModel;
     ConnectivityBroadcastReceiver mConnectivityBroadcastReceiver;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCheckoutViewModel = new ViewModelProvider(this).get(CheckoutViewModel.class);
+        mPaymentMethodViewModel = new ViewModelProvider(this).get(PaymentMethodViewModel.class);
         mConnectivityBroadcastReceiver = new ConnectivityBroadcastReceiver(this);
 
-        mCheckoutViewModel.data.observe(this, this::renderResult);
-        mCheckoutViewModel.failure.observe(this, this::handleFailure);
-        mCheckoutViewModel.loading.observe(this, this::handleLoading);
+        mPaymentMethodViewModel.data.observe(this, this::renderResult);
+        mPaymentMethodViewModel.failure.observe(this, this::handleFailure);
+        mPaymentMethodViewModel.loading.observe(this, this::handleLoading);
     }
 
     @Nullable
@@ -64,7 +63,7 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
         setupUI();
         setupListeners();
 
-        mCheckoutViewModel.getAvailablePaymentMethods();
+        mPaymentMethodViewModel.getAvailablePaymentMethods();
 
         return mUiBinding.getRoot();
     }
@@ -133,7 +132,7 @@ public class CheckoutFragment extends BaseFragment implements ConnectivityCallba
 
     @Override
     public void onConnectionChange(Boolean connected) {
-        mCheckoutViewModel.setIsNetworkAvailable(connected);
+        mPaymentMethodViewModel.setIsNetworkAvailable(connected);
     }
 
     void showEmptyListViews() {

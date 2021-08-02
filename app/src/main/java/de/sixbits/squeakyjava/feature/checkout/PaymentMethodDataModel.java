@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.domain.datamodel;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.presentation;
+package de.sixbits.squeakyjava.feature.checkout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import dagger.hilt.android.AndroidEntryPoint;
 import de.sixbits.platform.core.BaseFragment;
 import de.sixbits.platform.core.ContainerActivity;
-import de.sixbits.squeakyjava.feature.checkout.domain.datamodel.PaymentMethodDataModel;
 
 @AndroidEntryPoint
 public class PaymentFormActivity extends ContainerActivity {

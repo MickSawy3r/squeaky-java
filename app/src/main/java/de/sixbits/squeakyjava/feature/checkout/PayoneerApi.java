@@ -1,6 +1,6 @@
-package de.sixbits.squeakyjava.feature.checkout.datasource.network;
+package de.sixbits.squeakyjava.feature.checkout;
 
-import de.sixbits.squeakyjava.feature.checkout.datasource.network.response.PaymentMethodsResponse;
+import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 
