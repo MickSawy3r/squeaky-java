@@ -18,7 +18,7 @@ public class Navigator {
     Navigator() {
     }
 
-    public void showCheckout(@NotNull Context context) {
+    public void showPaymentMethod(@NotNull Context context) {
         context.startActivity(PaymentMethodActivity.callingIntent(context));
     }
 

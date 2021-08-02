@@ -10,12 +10,10 @@ buildscript {
         }
     }
     dependencies {
-        def buildToolsVersion = "4.1.0"
+        def buildToolsVersion = "7.0.0"
         def hiltVersion = "2.37"
-        def realmVersion = "10.6.0"
 
         classpath("com.android.tools.build:gradle:${buildToolsVersion}")
-        classpath("io.realm:realm-gradle-plugin:${realmVersion}")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${hiltVersion}")
     }
 }

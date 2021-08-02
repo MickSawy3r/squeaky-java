@@ -7,12 +7,12 @@ allprojects {
 ext {
     // Android
     minSdk = 23
-    compileSdk = 31
+    compileSdk = 30
     targetSdk = compileSdk
 
     AndroidSdk = [
             minSdk    : 23,
-            compileSdk: 31,
+            compileSdk: 30,
             targetSdk : compileSdk
     ]
 
@@ -44,6 +44,7 @@ ext {
             realm             : "realm-android",
             androidApplication: "com.android.application",
             androidLibrary    : "com.android.library",
+            safeArgs          : "androidx.navigation.safeargs"
     ]
 
     // ScriptPlugins
