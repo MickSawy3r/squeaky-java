@@ -35,7 +35,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
     void getAvailablePaymentMethods() {
         setLoading(true);
         if (isConnected) {
-            mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver(), null);
+            mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver());
         } else {
             isRequestOnQue = true;
             handleFailure(new Failure.NetworkConnection());

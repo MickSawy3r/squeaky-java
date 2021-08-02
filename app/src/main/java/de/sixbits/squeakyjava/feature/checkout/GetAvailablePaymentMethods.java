@@ -23,7 +23,7 @@ public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethod
     }
 
     @Override
-    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle(Void unused) {
+    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle(Void... params) {
         return mPayoneerRepository.getAvailablePaymentMethods();
     }
 }

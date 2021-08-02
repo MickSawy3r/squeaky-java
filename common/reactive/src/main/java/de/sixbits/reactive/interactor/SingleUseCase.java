@@ -17,7 +17,7 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
     /**
      * Builds an [Single] which will be used when executing the current [SingleUseCase].
      */
-    public abstract Single<Results> buildUseCaseSingle(Params params);
+    public abstract Single<Results> buildUseCaseSingle(Params... params);
 
     /**
      * Executes the current use case.
@@ -26,7 +26,7 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
      *                 by [buildUseCaseSingle] method.
      * @param params   Parameters (Optional) used to build/execute this use case.
      */
-    public void execute(DisposableSingleObserver<Results> observer, Params params) {
+    public final void execute(DisposableSingleObserver<Results> observer, Params[] params) {
         if (observer == null) {
             observer = new EmptySingleObserver<>();
         }
@@ -35,10 +35,25 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
     }
 
     /**
+     * Executes the current use case.
+     *
+     * @param observer [DisposableSingleObserver] which will be listening to the observer build
+     *                 by [buildUseCaseSingle] method.
+     */
+    public final void execute(DisposableSingleObserver<Results> observer) {
+        if (observer == null) {
+            observer = new EmptySingleObserver<>();
+        }
+        Single<Results> single = buildUseCaseSingleWithSchedulers();
+        addDisposable(single.subscribeWith(observer));
+    }
+
+    /**
      * Builds a [Single] which will be used when executing the current [SingleUseCase].
      * With provided Schedulers
      */
-    private Single<Results> buildUseCaseSingleWithSchedulers(Params params) {
+    @SafeVarargs
+    private final Single<Results> buildUseCaseSingleWithSchedulers(Params... params) {
         return buildUseCaseSingle(params)
                 .subscribeOn(getThreadExecutorScheduler())
                 .observeOn(getPostExecutionThreadScheduler());
