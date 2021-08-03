@@ -33,8 +33,8 @@ public class PaymentMethodViewModel extends BaseViewModel {
     }
 
     void getAvailablePaymentMethods() {
-        setLoading(true);
         if (isConnected) {
+            setLoading(true);
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver());
         } else {
             isRequestOnQue = true;

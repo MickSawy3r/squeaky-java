@@ -33,7 +33,7 @@ public class TestNavigator {
         Navigator navigator = new Navigator();
         navigator.showPaymentForm(
                 getApplicationContext(),
-                new PaymentMethodDataModel("name", "url")
+                new PaymentMethodDataModel("1", "name", "url")
         );
         RobolectricAssertions.shouldNavigateTo(RouterActivity.class, PaymentFormActivity.class);
     }

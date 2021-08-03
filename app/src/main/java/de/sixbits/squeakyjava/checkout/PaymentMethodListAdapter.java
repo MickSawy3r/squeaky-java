@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -18,15 +19,12 @@ import de.sixbits.platform.core.ViewHelpers;
 import de.sixbits.squeakyjava.databinding.ItemPaymentMethodBinding;
 
 public class PaymentMethodListAdapter extends RecyclerView.Adapter<PaymentMethodListAdapter.PaymentMethodItemVH> {
-    private static final String TAG = "PaymentMethodListAdapte";
-
-    private List<PaymentMethodDataModel> mMethods;
+    private final List<PaymentMethodDataModel> mMethods;
     private Consumer<PaymentMethodDataModel> mOnClickListener;
 
     @Inject
     PaymentMethodListAdapter() {
         mMethods = new ArrayList<>();
-        mOnClickListener = null;
     }
 
     @NotNull
@@ -48,8 +46,11 @@ public class PaymentMethodListAdapter extends RecyclerView.Adapter<PaymentMethod
     }
 
     public void replaceItems(List<PaymentMethodDataModel> newMethods) {
-        mMethods = newMethods;
-        notifyDataSetChanged();
+        mMethods.clear();
+        mMethods.addAll(newMethods);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(
+                new PaymentMethodDiffUtil(this.mMethods, newMethods));
+        diffResult.dispatchUpdatesTo(this);
     }
 
     public void setOnClickListener(Consumer<PaymentMethodDataModel> onItemClick) {

@@ -6,10 +6,12 @@ import android.os.Parcelable;
 public class PaymentMethodDataModel implements Parcelable {
     private final String name;
     private final String logoUrl;
+    private final String id;
 
-    public PaymentMethodDataModel(String name, String logoUrl) {
+    public PaymentMethodDataModel(String id, String name, String logoUrl) {
         this.name = name;
         this.logoUrl = logoUrl;
+        this.id = id;
     }
 
     public String getName() {
@@ -20,9 +22,12 @@ public class PaymentMethodDataModel implements Parcelable {
         return logoUrl;
     }
 
+    public String getId() { return id; }
+
     protected PaymentMethodDataModel(Parcel in) {
         name = in.readString();
         logoUrl = in.readString();
+        id = in.readString();
     }
 
     @Override
@@ -34,6 +39,7 @@ public class PaymentMethodDataModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(logoUrl);
+        dest.writeString(id);
     }
 
     @SuppressWarnings("unused")

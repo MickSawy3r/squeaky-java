@@ -12,6 +12,7 @@ public class PaymentMethodMapper {
         List<ApplicableItem> networks = response.getNetworks().getApplicable();
         for (int i = 0; i < networks.size(); i++) {
             result.add(new PaymentMethodDataModel(
+                    String.valueOf(i),
                     networks.get(i).getLabel(),
                     networks.get(i).getLinks().getLogo()
             ));
