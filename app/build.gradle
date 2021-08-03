@@ -52,6 +52,9 @@ dependencies {
     annotationProcessor(Libraries.hiltCompiler)
     annotationProcessor(Libraries.roomCompiler)
 
+    testAnnotationProcessor(Libraries.hiltCompiler)
+    androidTestAnnotationProcessor(Libraries.hiltCompiler)
+
     // Application dependencies
     implementation(Libraries.roomRuntime)
     implementation(Libraries.roomRxAdapter)
