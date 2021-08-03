@@ -1,10 +1,10 @@
-package de.sixbits.squeakyjava.feature.checkout;
+package de.sixbits.squeakyjava.checkout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.sixbits.squeakyjava.feature.checkout.response.ApplicableItem;
-import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
+import de.sixbits.squeakyjava.checkout.response.ApplicableItem;
+import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
 
 public class PaymentMethodMapper {
     static List<PaymentMethodDataModel> toDomainModel(PaymentMethodsResponse response) {

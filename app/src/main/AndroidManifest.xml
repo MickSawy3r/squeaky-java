@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SqueakyJava">
         <activity
-            android:name=".feature.routing.RouterActivity"
+            android:name=".routing.RouterActivity"
             android:exported="true"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent">
@@ -26,11 +26,11 @@
         </activity>
 
         <activity
-            android:name=".feature.checkout.PaymentMethodActivity"
+            android:name=".checkout.PaymentMethodActivity"
             android:exported="false" />
 
         <activity
-            android:name=".feature.checkout.PaymentFormActivity"
+            android:name=".checkout.PaymentFormActivity"
             android:exported="false" />
 
     </application>

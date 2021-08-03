@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout;
+package de.sixbits.squeakyjava.checkout;
 
 import static org.mockito.Mockito.when;
 
@@ -16,7 +16,6 @@ import de.sixbits.reactive.executor.ThreadExecutor;
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.observers.TestObserver;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 

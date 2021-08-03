@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout.response;
+package de.sixbits.squeakyjava.checkout.response;
 
 import java.util.List;
 import com.squareup.moshi.Json;

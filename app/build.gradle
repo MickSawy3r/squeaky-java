@@ -82,8 +82,10 @@ dependencies {
     testImplementation(TestLibraries.mockitoInline)
     testImplementation(TestLibraries.mockitoJUnitJupyter)
     testImplementation(TestLibraries.robolectric)
+    testImplementation(TestLibraries.hiltTesting)
     testImplementation(TestLibraries.coreTesting)
     testImplementation(TestLibraries.testExtJunit)
+
     debugImplementation(TestLibraries.fragmentTesting)
 
     // Test Runtime

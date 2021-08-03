@@ -20,7 +20,7 @@ ext {
     appId = "de.sixbits.squeakyjava"
     versionCode = 1
     versionName = "1.0"
-    testRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testRunner = "de.sixbits.squeakyjava.TestApp"
 
     AndroidClient = [
             appId      : appId,

@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.routing;
+package de.sixbits.squeakyjava.routing;
 
 import android.os.Bundle;
 

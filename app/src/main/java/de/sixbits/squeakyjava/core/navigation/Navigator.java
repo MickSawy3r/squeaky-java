@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import de.sixbits.squeakyjava.feature.checkout.PaymentMethodDataModel;
-import de.sixbits.squeakyjava.feature.checkout.PaymentMethodActivity;
-import de.sixbits.squeakyjava.feature.checkout.PaymentFormActivity;
+import de.sixbits.squeakyjava.checkout.PaymentMethodDataModel;
+import de.sixbits.squeakyjava.checkout.PaymentMethodActivity;
+import de.sixbits.squeakyjava.checkout.PaymentFormActivity;
 
 @Singleton
 public class Navigator {

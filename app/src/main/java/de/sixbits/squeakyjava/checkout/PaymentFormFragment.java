@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout;
+package de.sixbits.squeakyjava.checkout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import de.sixbits.squeakyjava.databinding.FragmentPaymentBinding;
 public class PaymentFormFragment extends BaseFragment {
     private static final String KEY_PAYMENT_METHOD = "PAYMENT_METHOD";
 
-    static PaymentFormFragment getInstance(PaymentMethodDataModel paymentMethod) {
+    public static PaymentFormFragment getInstance(PaymentMethodDataModel paymentMethod) {
         return FragmentHelper.getLoadedFragment(
                 new PaymentFormFragment(),
                 KEY_PAYMENT_METHOD,

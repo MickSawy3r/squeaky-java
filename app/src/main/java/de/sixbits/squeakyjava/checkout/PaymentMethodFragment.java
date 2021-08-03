@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.checkout;
+package de.sixbits.squeakyjava.checkout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
