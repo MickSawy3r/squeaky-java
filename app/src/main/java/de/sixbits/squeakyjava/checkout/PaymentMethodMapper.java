@@ -7,7 +7,7 @@ import de.sixbits.squeakyjava.checkout.response.ApplicableItem;
 import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
 
 public class PaymentMethodMapper {
-    static List<PaymentMethodDataModel> toDomainModel(PaymentMethodsResponse response) {
+    public static List<PaymentMethodDataModel> toDomainModel(PaymentMethodsResponse response) {
         List<PaymentMethodDataModel> result = new ArrayList<>();
         List<ApplicableItem> networks = response.getNetworks().getApplicable();
         for (int i = 0; i < networks.size(); i++) {
