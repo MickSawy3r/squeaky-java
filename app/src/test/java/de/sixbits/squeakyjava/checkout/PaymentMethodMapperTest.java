@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import de.sixbits.squeakyjava.TestHelpers;
+import de.sixbits.squeakyjava.helper.FileTestHelpers;
 import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
 import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
 
@@ -15,7 +15,7 @@ public class PaymentMethodMapperTest {
 
     @Test
     public void testMapper_shouldMapDataCorrectly() throws IOException {
-        String jsonData = TestHelpers.loadJson("/listresult.json");
+        String jsonData = FileTestHelpers.loadJson("/listresult.json");
         PaymentMethodsResponse response = PaymentMethodsResponseFactory.getPaymentResponse(
                 jsonData
         );

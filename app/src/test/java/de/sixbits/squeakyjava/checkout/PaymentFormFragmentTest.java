@@ -7,12 +7,11 @@ import android.content.Context;
 import android.widget.TextView;
 
 import org.junit.Test;
-import org.robolectric.RuntimeEnvironment;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.RobolectricTest;
-import de.sixbits.squeakyjava.TestHelpers;
+import de.sixbits.squeakyjava.helper.HiltTestHelpers;
 
 @HiltAndroidTest
 public class PaymentFormFragmentTest extends RobolectricTest {
@@ -26,7 +25,7 @@ public class PaymentFormFragmentTest extends RobolectricTest {
                 "image"
         );
         PaymentFormFragment fragment = PaymentFormFragment.getInstance(method);
-        TestHelpers.launchFragmentInHiltContainer(fragment);
+        HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
         // Then a text with the name "CC" Must show up in the screen.
         assertThat(fragment.getView()).isNotNull();
@@ -38,7 +37,7 @@ public class PaymentFormFragmentTest extends RobolectricTest {
     public void testPaymentFormFragment_shouldShowError() {
         // Given Payment Method Fragment is requested for no payment method
         PaymentFormFragment fragment = new PaymentFormFragment();
-        TestHelpers.launchFragmentInHiltContainer(fragment);
+        HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
         // Then a text with the error should show in the screen
         Context context = getApplicationContext();
