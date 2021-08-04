@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import de.sixbits.platform.core.BaseViewModel;
 import de.sixbits.platform.core.Failure;
+import de.sixbits.squeakyjava.EspressoIdlingResource;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
@@ -37,6 +38,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
     void getAvailablePaymentMethods() {
         if (isConnected) {
             setLoading(true);
+            EspressoIdlingResource.increment();
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver());
         } else {
             isRequestOnQue = true;
@@ -60,6 +62,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
             Log.d(TAG, "onSuccess: ");
             _data.postValue(paymentMethodDataModels);
             setLoading(false);
+            EspressoIdlingResource.decrement();
         }
 
         @Override
@@ -71,6 +74,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
                 handleFailure(new Failure.UnknownFailure());
             }
             setLoading(false);
+            EspressoIdlingResource.decrement();
         }
     }
 }

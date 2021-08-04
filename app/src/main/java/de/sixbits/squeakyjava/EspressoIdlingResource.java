@@ -6,11 +6,11 @@ public class EspressoIdlingResource {
     static final String RESOURCE = "GLOBAL";
     static final CountingIdlingResource countingIdlingResource = new CountingIdlingResource(RESOURCE);
 
-    void increment() {
+    public static void increment() {
         countingIdlingResource.increment();
     }
 
-    void decrement() {
+    public static void decrement() {
         if (!countingIdlingResource.isIdleNow()) {
             countingIdlingResource.decrement();
         }

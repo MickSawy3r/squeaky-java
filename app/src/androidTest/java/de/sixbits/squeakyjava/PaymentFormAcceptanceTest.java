@@ -45,7 +45,7 @@ public class PaymentFormAcceptanceTest {
     }
 
     @Test
-    public void testPaymentMethod() {
+    public void testPaymentForm() {
         Intent intent = PaymentFormActivity.callingIntent(
                 getApplicationContext(),
                 new PaymentMethodDataModel("1", "CC", "Url")
