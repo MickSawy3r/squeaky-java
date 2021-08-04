@@ -3,8 +3,12 @@ package de.sixbits.squeakyjava.checkout;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 
+import de.sixbits.squeakyjava.TestHelpers;
 import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
 import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
@@ -21,16 +25,18 @@ public class PayoneerApiTest {
     public void setup() {
         mockWebServer = new MockWebServer();
         try {
-            mockWebServer.start(8800);
+            mockWebServer.start(8765);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void testPayoneerApi() {
+    public void testPayoneerApi() throws IOException {
         MockResponse response = new MockResponse();
-        response.setBody(PaymentMethodsResponseFactory.VisaDankortResponse);
+
+        String jsonData = TestHelpers.loadJson("/listresult.json");
+        response.setBody(jsonData);
         response.setResponseCode(200);
 
         mockWebServer.enqueue(response);
@@ -45,12 +51,14 @@ public class PayoneerApiTest {
         TestObserver<PaymentMethodsResponse> testObserver = api.getPaymentMethods().test();
         testObserver.assertComplete();
 
+        testObserver.assertValue((v) -> v.getNetworks().getApplicable().size() == 17);
+
         testObserver.assertValue((v) ->
                 v.getNetworks()
                         .getApplicable()
                         .get(0)
                         .getLabel()
-                        .equals("Visa Dankort"));
+                        .equals("American Express"));
 
         testObserver.assertValue((v) ->
                 v.getNetworks()
@@ -58,6 +66,6 @@ public class PayoneerApiTest {
                         .get(0)
                         .getLinks()
                         .getLogo()
-                        .equals("https://raw.githubusercontent.com/optile/checkout-android/develop/checkout/src/main/assets/networklogos/visa_dankort.png"));
+                        .equals("https://raw.githubusercontent.com/optile/checkout-android/develop/checkout/src/main/assets/networklogos/amex.png"));
     }
 }

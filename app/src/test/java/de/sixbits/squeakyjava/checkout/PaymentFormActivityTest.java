@@ -41,8 +41,6 @@ public class PaymentFormActivityTest extends RobolectricTest {
 
             assert fragment != null;
             assert fragment instanceof PaymentFormFragment;
-
-            System.out.println("Hello from activity");
         }));
     }
 }
