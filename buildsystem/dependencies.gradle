@@ -75,6 +75,7 @@ ext {
     moshiVersion = "1.12.0"
     picassoVersion = "2.71828"
     lottieVersion = "3.7.2"
+    idlingResourceVersion = "3.4.0"
 
     Libraries = [
             lottie                  : "com.airbnb.android:lottie:${lottieVersion}",
@@ -106,6 +107,7 @@ ext {
             rxAndroid               : "io.reactivex.rxjava3:rxandroid:${rxAndroidVersion}",
             rxJava                  : "io.reactivex.rxjava3:rxjava:${rxJavaVersion}",
             rxRetrofitAdapter       : "com.github.akarnokd:rxjava3-retrofit-adapter:${retrofitRxAdapterVersion}",
+            idelingResource         : "androidx.test.espresso:espresso-idling-resource:${idlingResourceVersion}"
     ]
 
     // Test Libraries
