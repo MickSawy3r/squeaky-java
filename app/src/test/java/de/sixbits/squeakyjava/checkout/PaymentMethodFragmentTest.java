@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -52,33 +53,78 @@ public class PaymentMethodFragmentTest extends RobolectricTest {
     }
 
     @Test
-    public void testInitialState_shouldSeeNoInternetError() {
+    public void testErrorState_shouldSeeNoInternetError() {
+        // Given I open the Payment Method Screen
         PaymentMethodFragment fragment = PaymentMethodFragment.getInstance();
         fragment.injectViewModel(paymentMethodViewModel);
-
         HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
+        // And the screen is visible
         assertThat(fragment.getView()).isNotNull();
-
+        RecyclerView rvPaymentList = fragment.getView().findViewById(R.id.rv_payment_methods);
         LinearLayout noInternetLayout = fragment.getView().findViewById(R.id.ll_no_internet);
+
+        // When I have no internet and request the methods
+        failureLiveData.postValue(new Failure.NetworkConnection());
+
+        // Then I should see a no internet error message
+        assertThat(fragment.getView()).isNotNull();
         assertThat(noInternetLayout.getVisibility()).isEqualTo(View.VISIBLE);
+
+        // And The data list should be invisible
+        assertThat(rvPaymentList.getVisibility()).isEqualTo(View.GONE);
     }
 
     @Test
     public void testDataState_shouldShowDataList() {
+        // Given I open the Payment Method Screen
         PaymentMethodFragment fragment = PaymentMethodFragment.getInstance();
         fragment.injectViewModel(paymentMethodViewModel);
-
         HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
-        assertThat(fragment.getView()).isNotNull();
+        // When I get data
         dataLiveData.postValue(PaymentMethodsResponseFactory.getPaymentMethodList());
 
+        // And the screen is visible
         assertThat(fragment.getView()).isNotNull();
         RecyclerView rvPaymentList = fragment.getView().findViewById(R.id.rv_payment_methods);
+        LinearLayout noInternetLayout = fragment.getView().findViewById(R.id.ll_no_internet);
+
+        // Then I should see the data list
         assertThat(rvPaymentList.getVisibility()).isEqualTo(View.VISIBLE);
 
+        // And the data list should contain the same item numbers as the result
         assertThat(rvPaymentList.getAdapter()).isNotNull();
-        assertThat(rvPaymentList.getAdapter().getItemCount()).isEqualTo(1);
+        assertThat(rvPaymentList.getAdapter().getItemCount())
+                .isEqualTo(PaymentMethodsResponseFactory.getPaymentMethodList().size());
+
+        // And No error should show
+        assertThat(noInternetLayout.getVisibility()).isEqualTo(View.GONE);
+    }
+
+    @Test
+    public void testDataState_withNoMethods_shouldEmptyListMessage() {
+        // Given I open the Payment Method Screen
+        PaymentMethodFragment fragment = PaymentMethodFragment.getInstance();
+        fragment.injectViewModel(paymentMethodViewModel);
+        HiltTestHelpers.launchFragmentInHiltContainer(fragment);
+
+        // When I get data
+        dataLiveData.postValue(new ArrayList<>());
+
+        // And the screen is visible
+        assertThat(fragment.getView()).isNotNull();
+        RecyclerView rvPaymentList = fragment.getView().findViewById(R.id.rv_payment_methods);
+        LinearLayout noInternetLayout = fragment.getView().findViewById(R.id.ll_no_internet);
+        LinearLayout emptyListLayout = fragment.getView().findViewById(R.id.ll_empty_list);
+
+        // Then I should not see the data list
+        assertThat(rvPaymentList.getVisibility()).isEqualTo(View.GONE);
+
+        // And I should see and empty list page
+        assertThat(emptyListLayout.getVisibility()).isEqualTo(View.VISIBLE);
+
+        // And No error should show
+        assertThat(noInternetLayout.getVisibility()).isEqualTo(View.GONE);
     }
 }

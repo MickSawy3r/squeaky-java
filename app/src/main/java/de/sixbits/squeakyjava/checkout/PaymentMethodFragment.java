@@ -51,8 +51,12 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPaymentMethodViewModel = new ViewModelProvider(this).get(PaymentMethodViewModel.class);
-        mConnectivityBroadcastReceiver = new ConnectivityBroadcastReceiver(this);
+        if (mPaymentMethodViewModel == null) {
+            mPaymentMethodViewModel = new ViewModelProvider(this).get(PaymentMethodViewModel.class);
+        }
+        if (mConnectivityBroadcastReceiver == null) {
+            mConnectivityBroadcastReceiver = new ConnectivityBroadcastReceiver(this);
+        }
 
         mPaymentMethodViewModel.getDataLiveData().observe(this, this::renderResult);
         mPaymentMethodViewModel.getFailureLiveData().observe(this, this::handleFailure);
