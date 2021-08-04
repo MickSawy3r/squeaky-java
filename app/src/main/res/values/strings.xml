@@ -12,4 +12,5 @@
     <string name="payment">Payment</string>
     <string name="payment_method_clicked">Payment Method Clicked!</string>
     <string name="empty_list">Empty List</string>
+    <string name="err_empty_payment_method">Error! No Payment Method Name was found!</string>
 </resources>

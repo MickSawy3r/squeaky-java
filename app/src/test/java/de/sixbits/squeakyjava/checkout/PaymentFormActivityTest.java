@@ -3,6 +3,8 @@ package de.sixbits.squeakyjava.checkout;
 import static androidx.test.core.app.ActivityScenario.launch;
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -39,8 +41,8 @@ public class PaymentFormActivityTest extends RobolectricTest {
         scenario.onActivity((activity -> {
             Fragment fragment = activity.getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
-            assert fragment != null;
-            assert fragment instanceof PaymentFormFragment;
+            assertThat(fragment).isNotNull();
+            assertThat(fragment).isInstanceOf(PaymentFormFragment.class);
         }));
     }
 }

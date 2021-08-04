@@ -1,5 +1,6 @@
 package de.sixbits.squeakyjava.checkout;
 
+import static com.google.common.truth.Truth.assertThat;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import org.junit.Before;
@@ -36,15 +37,16 @@ public class PaymentMethodViewModelTest {
                 getAvailablePaymentMethods
         );
 
-        // When I open the app
-        // Then I should not be loading
-        assert viewModel.loading.getValue() != null && !viewModel.loading.getValue();
+        // When the app is opened
+        // Then that app should not be loading
+        assertThat(viewModel.loading.getValue()).isNotNull();
+        assertThat(viewModel.loading.getValue()).isFalse();
 
         // There should be no data
-        assert viewModel.data.getValue() == null;
+        assertThat(viewModel.data.getValue()).isNull();
 
         // And there should be no failures
-        assert viewModel.failure.getValue() == null;
+        assertThat(viewModel.failure.getValue()).isNull();
     }
 
     @Test
@@ -66,10 +68,10 @@ public class PaymentMethodViewModelTest {
         );
 
         // And I should get a loading indication
-        assert viewModel.loading.getValue() != null && viewModel.loading.getValue();
+        assertThat(viewModel.loading.getValue()).isTrue();
 
         // And failures should be null
-        assert viewModel.failure.getValue() == null;
+        assertThat(viewModel.failure.getValue()).isNull();
     }
 
     @Test
@@ -91,10 +93,10 @@ public class PaymentMethodViewModelTest {
         );
 
         // And I should not get a loading indication
-        assert viewModel.loading.getValue() != null && !viewModel.loading.getValue();
+        assertThat( viewModel.loading.getValue()).isFalse();
 
         // And failures should be NetworkFailure
-        assert viewModel.failure.getValue() instanceof Failure.NetworkConnection;
+        assertThat(viewModel.failure.getValue()).isInstanceOf(Failure.NetworkConnection.class);
     }
 
     @Test
@@ -116,7 +118,7 @@ public class PaymentMethodViewModelTest {
         );
 
         // And failures should be NetworkFailure
-        assert viewModel.failure.getValue() instanceof Failure.NetworkConnection;
+        assertThat(viewModel.failure.getValue()).isInstanceOf(Failure.NetworkConnection.class);
 
         // When I get internet connectivity
         viewModel.setIsNetworkAvailable(true);

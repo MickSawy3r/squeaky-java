@@ -1,5 +1,7 @@
 package de.sixbits.squeakyjava.checkout;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import android.os.Build;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class PaymentFormFragmentTest extends RobolectricTest {
 
     @Test
     public void testPaymentFormFragment() {
+        // Given Payment Method Fragment is requested for payment method "CC"
         PaymentMethodDataModel method = new PaymentMethodDataModel(
                 "id",
                 "CC",
@@ -29,11 +32,9 @@ public class PaymentFormFragmentTest extends RobolectricTest {
         PaymentFormFragment fragment = PaymentFormFragment.getInstance(method);
         TestHelpers.launchFragmentInHiltContainer(fragment);
 
-        assert fragment.getView() != null;
+        // Then a text with the name "CC" Must show up in the screen.
+        assertThat(fragment.getView()).isNotNull();
         TextView tvPayment = fragment.getView().findViewById(R.id.tv_payment);
-
-        assert tvPayment.getText().toString().equals(method.getName());
-
-        System.out.println(tvPayment.getText().toString());
+        assertThat(tvPayment.getText().toString()).isEqualTo(method.getName());
     }
 }

@@ -88,6 +88,7 @@ dependencies {
     testImplementation(TestLibraries.hiltTesting)
     testImplementation(TestLibraries.coreTesting)
     testImplementation(TestLibraries.testExtJunit)
+    testImplementation(TestLibraries.truth)
 
     debugImplementation(TestLibraries.fragmentTesting)
 

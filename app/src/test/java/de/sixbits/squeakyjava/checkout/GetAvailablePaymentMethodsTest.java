@@ -1,6 +1,7 @@
 package de.sixbits.squeakyjava.checkout;
 
 import static org.mockito.Mockito.when;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,29 +41,36 @@ public class GetAvailablePaymentMethodsTest {
     @Test
     public void testGetAvailablePaymentMethods() {
         // Given the server contains 1 payment method
+        PaymentMethodDataModel paymentMethodItem = new PaymentMethodDataModel("1", "name", "url");
         List<PaymentMethodDataModel> methods = new ArrayList<>();
-        methods.add(new PaymentMethodDataModel("1", "name", "url"));
+        methods.add(paymentMethodItem);
 
         when(payoneerRepository.getAvailablePaymentMethods())
                 .thenReturn(Single.just(methods));
 
         // When I request available methods
-        TestObserver<List<PaymentMethodDataModel>> testObserver = new GetAvailablePaymentMethods(
+        List<PaymentMethodDataModel> availableMethods = new GetAvailablePaymentMethods(
                 threadExecutor,
                 postExecutionThread,
                 payoneerRepository
         ).buildUseCaseSingle()
-                .test();
+                .test()
+                .values()
+                .get(0);
 
         // Then I should get 1 available payment method
-        testObserver.assertValue((availableMethods) -> availableMethods.size() == 1);
+        assertWithMessage("Checking the available methods size")
+                .that(availableMethods.size())
+                .isEqualTo(1);
 
         // And I should get a payment method name
-        testObserver.assertValue((availableMethods) ->
-                availableMethods.get(0).getName().equals("name"));
+        assertWithMessage("Checking the first payment methods name")
+                .that(availableMethods.get(0).getName())
+                .isEqualTo(paymentMethodItem.getName());
 
         // And I should get a payment method url
-        testObserver.assertValue((availableMethods) ->
-                availableMethods.get(0).getLogoUrl().equals("url"));
+        assertWithMessage("Checking the first payment methods logo url")
+                .that(availableMethods.get(0).getLogoUrl())
+                .isEqualTo("url");
     }
 }

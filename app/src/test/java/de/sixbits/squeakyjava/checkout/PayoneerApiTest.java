@@ -3,14 +3,10 @@ package de.sixbits.squeakyjava.checkout;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
 
 import de.sixbits.squeakyjava.TestHelpers;
 import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
-import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.observers.TestObserver;
 import okhttp3.mockwebserver.MockResponse;

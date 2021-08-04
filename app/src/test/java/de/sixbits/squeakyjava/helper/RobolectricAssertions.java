@@ -1,5 +1,7 @@
 package de.sixbits.squeakyjava.helper;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,6 @@ public class RobolectricAssertions {
         ShadowActivity shadowActivity = Shadows.shadowOf(originActivity);
         Intent nextIntent = shadowActivity.peekNextStartedActivity();
 
-        assert nextIntent.getComponent().getClassName().equals(nextActivity.getCanonicalName());
+        assertThat(nextIntent.getComponent().getClassName()).isEqualTo(nextActivity.getCanonicalName());
     }
 }

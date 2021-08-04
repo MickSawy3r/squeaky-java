@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import dagger.hilt.android.AndroidEntryPoint;
 import de.sixbits.platform.core.BaseFragment;
 import de.sixbits.platform.helpers.FragmentHelper;
+import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.databinding.FragmentPaymentBinding;
 
 @AndroidEntryPoint
@@ -49,8 +50,11 @@ public class PaymentFormFragment extends BaseFragment {
                 false
         );
 
-        // Do Stuff
-        uiBinding.tvPayment.setText(paymentMethodDataModel.getName());
+        if (paymentMethodDataModel.getName() != null && !paymentMethodDataModel.getName().isEmpty()) {
+            uiBinding.tvPayment.setText(paymentMethodDataModel.getName());
+        } else {
+            uiBinding.tvPayment.setText(R.string.err_empty_payment_method);
+        }
 
         return uiBinding.getRoot();
     }
