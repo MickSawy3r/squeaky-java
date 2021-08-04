@@ -1,5 +1,7 @@
 package de.sixbits.squeakyjava.factory;
 
+import androidx.annotation.NonNull;
+
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -19,6 +21,7 @@ public class PaymentMethodsResponseFactory {
         return adapter.fromJson(jsonPayload);
     }
 
+    @NonNull
     public static List<PaymentMethodDataModel> getPaymentMethodList() {
         List<PaymentMethodDataModel> paymentMethods = new ArrayList<>();
 

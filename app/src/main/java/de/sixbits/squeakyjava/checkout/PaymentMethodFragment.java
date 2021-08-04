@@ -113,7 +113,7 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         );
     }
 
-    void renderResult(List<PaymentMethodDataModel> methods) {
+    void renderResult(@NonNull List<PaymentMethodDataModel> methods) {
         if (methods.size() > 0) {
             mPaymentMethodListAdapter.replaceItems(methods);
             showDataViews();
