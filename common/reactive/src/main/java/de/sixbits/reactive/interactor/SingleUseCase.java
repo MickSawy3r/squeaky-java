@@ -17,7 +17,7 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
     /**
      * Builds an [Single] which will be used when executing the current [SingleUseCase].
      */
-    public abstract Single<Results> buildUseCaseSingle(Params... params);
+    public abstract Single<Results> buildUseCaseSingle(Params[] params);
 
     /**
      * Executes the current use case.
@@ -41,11 +41,7 @@ public abstract class SingleUseCase<Results, Params> extends BaseReactiveUseCase
      *                 by [buildUseCaseSingle] method.
      */
     public final void execute(DisposableSingleObserver<Results> observer) {
-        if (observer == null) {
-            observer = new EmptySingleObserver<>();
-        }
-        Single<Results> single = buildUseCaseSingleWithSchedulers();
-        addDisposable(single.subscribeWith(observer));
+        execute(observer, null);
     }
 
     /**
