@@ -9,7 +9,7 @@ import de.sixbits.reactive.executor.ThreadExecutor;
 import de.sixbits.reactive.interactor.SingleUseCase;
 import io.reactivex.rxjava3.core.Single;
 
-public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethodDataModel>, Void> {
+public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethodDataModel>, Object> {
     private final PayoneerRepository mPayoneerRepository;
 
     @Inject
@@ -23,7 +23,7 @@ public class GetAvailablePaymentMethods extends SingleUseCase<List<PaymentMethod
     }
 
     @Override
-    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle(Void... params) {
+    public Single<List<PaymentMethodDataModel>> buildUseCaseSingle(Object... params) {
         return mPayoneerRepository.getAvailablePaymentMethods();
     }
 }
