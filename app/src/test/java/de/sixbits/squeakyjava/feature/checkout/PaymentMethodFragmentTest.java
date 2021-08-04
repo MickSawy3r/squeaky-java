@@ -25,7 +25,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import de.sixbits.platform.core.Failure;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.RobolectricTest;
-import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
+import de.sixbits.squeakyjava.helper.PaymentMethodsResponseFactory;
 import de.sixbits.squeakyjava.helper.HiltTestHelpers;
 
 @HiltAndroidTest

@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.factory;
+package de.sixbits.squeakyjava.helper;
 
 import androidx.annotation.NonNull;
 

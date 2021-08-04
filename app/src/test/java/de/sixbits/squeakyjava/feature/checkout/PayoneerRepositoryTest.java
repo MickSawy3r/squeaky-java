@@ -14,7 +14,7 @@ import java.util.List;
 import de.sixbits.platform.core.Failure;
 import de.sixbits.platform.core.NetworkHandler;
 import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
-import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
+import de.sixbits.squeakyjava.helper.PaymentMethodsResponseFactory;
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;

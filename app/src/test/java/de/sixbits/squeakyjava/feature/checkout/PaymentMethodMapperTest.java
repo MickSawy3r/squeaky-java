@@ -9,7 +9,7 @@ import java.util.List;
 
 import de.sixbits.squeakyjava.helper.FileTestHelpers;
 import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
-import de.sixbits.squeakyjava.factory.PaymentMethodsResponseFactory;
+import de.sixbits.squeakyjava.helper.PaymentMethodsResponseFactory;
 
 public class PaymentMethodMapperTest {
 
