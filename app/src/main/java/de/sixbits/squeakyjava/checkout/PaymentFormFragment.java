@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.Contract;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.sixbits.platform.core.BaseFragment;
 import de.sixbits.platform.helpers.FragmentHelper;
@@ -18,6 +20,8 @@ import de.sixbits.squeakyjava.databinding.FragmentPaymentBinding;
 public class PaymentFormFragment extends BaseFragment {
     private static final String KEY_PAYMENT_METHOD = "PAYMENT_METHOD";
 
+    @NonNull
+    @Contract("_ -> new")
     public static PaymentFormFragment getInstance(PaymentMethodDataModel paymentMethod) {
         return FragmentHelper.getLoadedFragment(
                 new PaymentFormFragment(),
@@ -27,13 +31,16 @@ public class PaymentFormFragment extends BaseFragment {
     }
 
     private PaymentMethodDataModel paymentMethodDataModel;
+    private FragmentPaymentBinding uiBinding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            paymentMethodDataModel = getArguments().getParcelable(KEY_PAYMENT_METHOD);
+            if (getArguments().getParcelable(KEY_PAYMENT_METHOD) != null) {
+                paymentMethodDataModel = getArguments().getParcelable(KEY_PAYMENT_METHOD);
+            }
         }
     }
 
@@ -44,18 +51,25 @@ public class PaymentFormFragment extends BaseFragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        FragmentPaymentBinding uiBinding = FragmentPaymentBinding.inflate(
+        uiBinding = FragmentPaymentBinding.inflate(
                 inflater,
                 container,
                 false
         );
 
-        if (paymentMethodDataModel.getName() != null && !paymentMethodDataModel.getName().isEmpty()) {
-            uiBinding.tvPayment.setText(paymentMethodDataModel.getName());
-        } else {
-            uiBinding.tvPayment.setText(R.string.err_empty_payment_method);
-        }
+        renderResult();
 
         return uiBinding.getRoot();
+    }
+
+    void renderResult() {
+        if (paymentMethodDataModel == null) {
+            uiBinding.tvPayment.setText(R.string.err_empty_payment_method);
+            return;
+        }
+
+        if (paymentMethodDataModel.getName() != null && !paymentMethodDataModel.getName().isEmpty()) {
+            uiBinding.tvPayment.setText(paymentMethodDataModel.getName());
+        }
     }
 }
