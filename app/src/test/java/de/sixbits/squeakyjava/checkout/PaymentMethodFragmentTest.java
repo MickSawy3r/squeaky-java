@@ -65,7 +65,7 @@ public class PaymentMethodFragmentTest extends RobolectricTest {
         LinearLayout noInternetLayout = fragment.getView().findViewById(R.id.ll_no_internet);
 
         // When I have no internet and request the methods
-        failureLiveData.postValue(new Failure.NetworkConnection());
+        failureLiveData.postValue(new Failure.ConnectivityError());
 
         // Then I should see a no internet error message
         assertThat(fragment.getView()).isNotNull();
