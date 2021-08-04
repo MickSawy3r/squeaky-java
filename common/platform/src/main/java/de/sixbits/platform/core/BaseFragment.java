@@ -39,6 +39,12 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    protected void notify(String message) {
+        if (getView() != null) {
+            Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
     protected void notifyWithAction(
             @StringRes Integer message,
             @StringRes Integer actionText,

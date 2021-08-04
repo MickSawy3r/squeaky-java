@@ -102,11 +102,16 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         }
     }
 
-    void setupUI() {
+    @Override
+    public void onConnectionChange(Boolean connected) {
+        mPaymentMethodViewModel.setIsNetworkAvailable(connected);
+    }
+
+    private void setupUI() {
         mUiBinding.rvPaymentMethods.setAdapter(mPaymentMethodListAdapter);
     }
 
-    void setupListeners() {
+    private void setupListeners() {
         mPaymentMethodListAdapter.setOnClickListener(paymentMethodDataModel -> {
                     if (getContext() != null) {
                         navigator.showPaymentForm(getContext(), paymentMethodDataModel);
@@ -117,7 +122,7 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         );
     }
 
-    void renderResult(@NonNull List<PaymentMethodDataModel> methods) {
+    private void renderResult(@NonNull List<PaymentMethodDataModel> methods) {
         if (methods.size() > 0) {
             mPaymentMethodListAdapter.replaceItems(methods);
             showDataViews();
@@ -126,21 +131,23 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         }
     }
 
-    void handleFailure(Failure failure) {
-        if (failure instanceof Failure.ConnectivityError) {
-            showNoInternetViews();
-        } else if (failure instanceof Failure.NetworkConnection) {
+    private void handleFailure(Failure failure) {
+        if (failure instanceof Failure.BadRequestError) {
             notifyWithAction(
                     R.string.network_error,
                     R.string.retry,
                     () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
             );
-        } else {
+        } else if (failure instanceof Failure.ConnectivityError) {
+            showNoInternetViews();
+        } else if (failure instanceof Failure.ServerError) {
             notify(R.string.failure_server_error);
+        } else {
+            notify(failure.toString());
         }
     }
 
-    void handleLoading(@NonNull Boolean loading) {
+    private void handleLoading(@NonNull Boolean loading) {
         if (loading) {
             showProgress();
         } else {
@@ -148,24 +155,19 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         }
     }
 
-    @Override
-    public void onConnectionChange(Boolean connected) {
-        mPaymentMethodViewModel.setIsNetworkAvailable(connected);
-    }
-
-    void showEmptyListViews() {
+    private void showEmptyListViews() {
         mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
         mUiBinding.llEmptyList.setVisibility(View.VISIBLE);
         mUiBinding.llNoInternet.setVisibility(View.GONE);
     }
 
-    void showDataViews() {
+    private void showDataViews() {
         mUiBinding.rvPaymentMethods.setVisibility(View.VISIBLE);
         mUiBinding.llEmptyList.setVisibility(View.GONE);
         mUiBinding.llNoInternet.setVisibility(View.GONE);
     }
 
-    void showNoInternetViews() {
+    private void showNoInternetViews() {
         mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
         mUiBinding.llEmptyList.setVisibility(View.GONE);
         mUiBinding.llNoInternet.setVisibility(View.VISIBLE);

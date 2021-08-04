@@ -8,32 +8,32 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class BaseReactiveUseCase {
-    private static final String TAG = "BaseReactiveUseCase";
-    private final CompositeDisposable disposables = new CompositeDisposable();
+  private static final String TAG = "BaseReactiveUseCase";
+  private final CompositeDisposable disposables = new CompositeDisposable();
 
-    private final ThreadExecutor mThreadExecutor;
-    private final PostExecutionThread mPostExecutionThread;
+  private final ThreadExecutor mThreadExecutor;
+  private final PostExecutionThread mPostExecutionThread;
 
-    BaseReactiveUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        mThreadExecutor = threadExecutor;
-        mPostExecutionThread = postExecutionThread;
+  BaseReactiveUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    mThreadExecutor = threadExecutor;
+    mPostExecutionThread = postExecutionThread;
+  }
+
+  protected Scheduler getThreadExecutorScheduler() {
+    return Schedulers.from(mThreadExecutor);
+  }
+
+  protected Scheduler getPostExecutionThreadScheduler() {
+    return mPostExecutionThread.getScheduler();
+  }
+
+  void dispose() {
+    if (!disposables.isDisposed()) {
+      disposables.dispose();
     }
+  }
 
-    protected Scheduler getThreadExecutorScheduler() {
-        return Schedulers.from(mThreadExecutor);
-    }
-
-    protected Scheduler getPostExecutionThreadScheduler() {
-        return mPostExecutionThread.getScheduler();
-    }
-
-    void dispose() {
-        if (!disposables.isDisposed()) {
-            disposables.dispose();
-        }
-    }
-
-    void addDisposable(Disposable disposable) {
-        disposables.add(disposable);
-    }
+  void addDisposable(Disposable disposable) {
+    disposables.add(disposable);
+  }
 }
