@@ -103,6 +103,7 @@ dependencies {
     androidTestImplementation(TestLibraries.testRules)
     androidTestImplementation(TestLibraries.espressoIntents)
     androidTestImplementation(TestLibraries.hiltTesting)
+    androidTestImplementation(TestLibraries.truth)
 
     // Development dependencies
     debugImplementation(DevLibraries.leakCanary)
