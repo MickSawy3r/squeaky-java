@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -29,6 +31,12 @@ import de.sixbits.squeakyjava.databinding.FragmentCheckoutBinding;
 public class PaymentMethodFragment extends BaseFragment implements ConnectivityCallback {
     private static final String TAG = "CheckoutFragment";
 
+    @NonNull
+    @Contract(" -> new")
+    static PaymentMethodFragment getInstance() {
+        return new PaymentMethodFragment();
+    }
+
     @Inject
     Navigator navigator;
 
@@ -46,9 +54,9 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         mPaymentMethodViewModel = new ViewModelProvider(this).get(PaymentMethodViewModel.class);
         mConnectivityBroadcastReceiver = new ConnectivityBroadcastReceiver(this);
 
-        mPaymentMethodViewModel.data.observe(this, this::renderResult);
-        mPaymentMethodViewModel.failure.observe(this, this::handleFailure);
-        mPaymentMethodViewModel.loading.observe(this, this::handleLoading);
+        mPaymentMethodViewModel.getDataLiveData().observe(this, this::renderResult);
+        mPaymentMethodViewModel.getFailureLiveData().observe(this, this::handleFailure);
+        mPaymentMethodViewModel.getLoadingLiveData().observe(this, this::handleLoading);
     }
 
     @Nullable
@@ -151,5 +159,10 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
         mUiBinding.llEmptyList.setVisibility(View.GONE);
         mUiBinding.llNoInternet.setVisibility(View.VISIBLE);
+    }
+
+    @VisibleForTesting
+    void injectViewModel(PaymentMethodViewModel testViewModel) {
+        this.mPaymentMethodViewModel = testViewModel;
     }
 }

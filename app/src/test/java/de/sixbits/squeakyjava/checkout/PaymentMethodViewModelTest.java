@@ -39,14 +39,14 @@ public class PaymentMethodViewModelTest {
 
         // When the app is opened
         // Then that app should not be loading
-        assertThat(viewModel.loading.getValue()).isNotNull();
-        assertThat(viewModel.loading.getValue()).isFalse();
+        assertThat(viewModel.getLoadingLiveData().getValue()).isNotNull();
+        assertThat(viewModel.getLoadingLiveData().getValue()).isFalse();
 
         // There should be no data
-        assertThat(viewModel.data.getValue()).isNull();
+        assertThat(viewModel.getDataLiveData().getValue()).isNull();
 
         // And there should be no failures
-        assertThat(viewModel.failure.getValue()).isNull();
+        assertThat(viewModel.getFailureLiveData().getValue()).isNull();
     }
 
     @Test
@@ -68,10 +68,10 @@ public class PaymentMethodViewModelTest {
         );
 
         // And I should get a loading indication
-        assertThat(viewModel.loading.getValue()).isTrue();
+        assertThat(viewModel.getLoadingLiveData().getValue()).isTrue();
 
         // And failures should be null
-        assertThat(viewModel.failure.getValue()).isNull();
+        assertThat(viewModel.getFailureLiveData().getValue()).isNull();
     }
 
     @Test
@@ -93,10 +93,10 @@ public class PaymentMethodViewModelTest {
         );
 
         // And I should not get a loading indication
-        assertThat( viewModel.loading.getValue()).isFalse();
+        assertThat( viewModel.getLoadingLiveData().getValue()).isFalse();
 
         // And failures should be NetworkFailure
-        assertThat(viewModel.failure.getValue()).isInstanceOf(Failure.NetworkConnection.class);
+        assertThat(viewModel.getFailureLiveData().getValue()).isInstanceOf(Failure.NetworkConnection.class);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class PaymentMethodViewModelTest {
         );
 
         // And failures should be NetworkFailure
-        assertThat(viewModel.failure.getValue()).isInstanceOf(Failure.NetworkConnection.class);
+        assertThat(viewModel.getFailureLiveData().getValue()).isInstanceOf(Failure.NetworkConnection.class);
 
         // When I get internet connectivity
         viewModel.setIsNetworkAvailable(true);

@@ -22,7 +22,9 @@ public class PaymentMethodViewModel extends BaseViewModel {
     private final GetAvailablePaymentMethods mGetAvailablePaymentMethods;
 
     private final MutableLiveData<List<PaymentMethodDataModel>> _data = new MutableLiveData<>();
-    public LiveData<List<PaymentMethodDataModel>> data = _data;
+    public LiveData<List<PaymentMethodDataModel>> getDataLiveData() {
+        return _data;
+    }
 
     private Boolean isConnected = false;
     private Boolean isRequestOnQue = false;
