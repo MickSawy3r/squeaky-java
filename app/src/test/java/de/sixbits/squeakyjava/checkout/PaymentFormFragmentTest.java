@@ -13,19 +13,11 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import dagger.hilt.android.testing.HiltTestApplication;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.RoboCustomRunner;
+import de.sixbits.squeakyjava.RobolectricTest;
 import de.sixbits.squeakyjava.TestHelpers;
 
 @HiltAndroidTest
-@RunWith(RoboCustomRunner.class)
-@Config(
-        manifest = Config.NONE,
-        sdk = {Build.VERSION_CODES.O_MR1},
-        application = HiltTestApplication.class
-)
-public class PaymentFormFragmentTest {
-
-    @Rule
-    public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
+public class PaymentFormFragmentTest extends RobolectricTest {
 
     @Test
     public void testPaymentFormFragment() {
