@@ -1,5 +1,7 @@
 package de.sixbits.squeakyjava.core.di;
 
+import android.content.Context;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Singleton;
@@ -7,7 +9,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
+import de.sixbits.platform.core.NetworkHandler;
 import de.sixbits.squeakyjava.BuildConfig;
 import de.sixbits.squeakyjava.checkout.PayoneerRepository;
 import de.sixbits.squeakyjava.checkout.PayoneerApi;
@@ -47,6 +51,12 @@ public class AppModule {
 
     @Provides
     @Singleton
+    NetworkHandler provideNetworkHandler(@ApplicationContext Context context) {
+        return new NetworkHandler(context);
+    }
+
+    @Provides
+    @Singleton
     PayoneerApi providePayoneerApi(Retrofit retrofit) {
         return retrofit.create(PayoneerApi.class);
     }
@@ -59,7 +69,10 @@ public class AppModule {
 
     @Provides
     @Singleton
-    PayoneerRepository provideMoviesRepository(PayoneerRemoteDataSource dataSource) {
-        return new PayoneerRepository(dataSource);
+    PayoneerRepository provideMoviesRepository(
+            PayoneerRemoteDataSource dataSource,
+            NetworkHandler networkHandler
+    ) {
+        return new PayoneerRepository(dataSource, networkHandler);
     }
 }

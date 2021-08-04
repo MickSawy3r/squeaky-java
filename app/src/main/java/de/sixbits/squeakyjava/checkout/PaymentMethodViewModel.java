@@ -40,7 +40,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver());
         } else {
             isRequestOnQue = true;
-            handleFailure(new Failure.NetworkConnection());
+            handleFailure(new Failure.ConnectivityError());
         }
     }
 
@@ -65,7 +65,11 @@ public class PaymentMethodViewModel extends BaseViewModel {
         @Override
         public void onError(@NonNull Throwable e) {
             Log.d(TAG, "onError: " + e.getMessage() + "\n\n" + Arrays.toString(e.getStackTrace()));
-            handleFailure(new Failure.NetworkConnection());
+            if (e instanceof Failure.NetworkConnection) {
+                handleFailure(new Failure.NetworkConnection());
+            } else if (e instanceof Failure.ServerError) {
+                handleFailure(new Failure.ServerError());
+            }
             setLoading(false);
         }
     }

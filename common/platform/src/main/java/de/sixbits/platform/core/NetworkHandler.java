@@ -10,11 +10,11 @@ import de.sixbits.platform.helpers.ContextHelper;
 public class NetworkHandler {
     Context mContext;
 
-    NetworkHandler(Context context) {
+    public NetworkHandler(Context context) {
         mContext = context;
     }
 
-    Boolean isNetworkAvailable() {
+    public Boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = ContextHelper.getConnectivityManager(mContext);
 
         Network network = connectivityManager.getActiveNetwork();

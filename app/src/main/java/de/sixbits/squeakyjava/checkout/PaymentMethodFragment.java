@@ -127,8 +127,14 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
     }
 
     void handleFailure(Failure failure) {
-        if (failure instanceof Failure.NetworkConnection) {
+        if (failure instanceof Failure.ConnectivityError) {
             showNoInternetViews();
+        } else if (failure instanceof Failure.NetworkConnection) {
+            notifyWithAction(
+                    R.string.network_error,
+                    R.string.retry,
+                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
+            );
         } else {
             notify(R.string.failure_server_error);
         }

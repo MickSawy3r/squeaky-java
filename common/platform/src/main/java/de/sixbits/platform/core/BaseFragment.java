@@ -39,7 +39,7 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    void notifyWithAction(
+    protected void notifyWithAction(
             @StringRes Integer message,
             @StringRes Integer actionText,
             Runnable action
