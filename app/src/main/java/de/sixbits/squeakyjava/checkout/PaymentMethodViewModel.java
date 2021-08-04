@@ -65,10 +65,10 @@ public class PaymentMethodViewModel extends BaseViewModel {
         @Override
         public void onError(@NonNull Throwable e) {
             Log.d(TAG, "onError: " + e.getMessage() + "\n\n" + Arrays.toString(e.getStackTrace()));
-            if (e instanceof Failure.NetworkConnection) {
-                handleFailure(new Failure.NetworkConnection());
-            } else if (e instanceof Failure.ServerError) {
-                handleFailure(new Failure.ServerError());
+            if (e instanceof Failure) {
+                handleFailure((Failure) e);
+            } else {
+                handleFailure(new Failure.UnknownFailure());
             }
             setLoading(false);
         }
