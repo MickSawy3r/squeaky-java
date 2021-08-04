@@ -40,7 +40,7 @@ public class PaymentFormFragmentTest extends RobolectricTest {
         PaymentFormFragment fragment = new PaymentFormFragment();
         TestHelpers.launchFragmentInHiltContainer(fragment);
 
-        // Then a text with the name "CC" Must show up in the screen.
+        // Then a text with the error should show in the screen
         Context context = getApplicationContext();
         assertThat(fragment.getView()).isNotNull();
         TextView tvPayment = fragment.getView().findViewById(R.id.tv_payment);
