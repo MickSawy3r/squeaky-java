@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.sixbits.squeakyjava.checkout.PaymentMethodDataModel;
-import de.sixbits.squeakyjava.checkout.PaymentMethodMapper;
-import de.sixbits.squeakyjava.checkout.response.PaymentMethodsResponse;
+import de.sixbits.squeakyjava.feature.checkout.PaymentMethodDataModel;
+import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
 
 public class PaymentMethodsResponseFactory {
 

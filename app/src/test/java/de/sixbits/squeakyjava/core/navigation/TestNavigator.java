@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import de.sixbits.squeakyjava.checkout.PaymentFormActivity;
-import de.sixbits.squeakyjava.checkout.PaymentMethodActivity;
-import de.sixbits.squeakyjava.checkout.PaymentMethodDataModel;
-import de.sixbits.squeakyjava.routing.RouterActivity;
+import de.sixbits.squeakyjava.feature.checkout.PaymentFormActivity;
+import de.sixbits.squeakyjava.feature.checkout.PaymentMethodActivity;
+import de.sixbits.squeakyjava.feature.checkout.PaymentMethodDataModel;
+import de.sixbits.squeakyjava.feature.routing.RouterActivity;
 import de.sixbits.squeakyjava.helper.RobolectricAssertions;
 
 @RunWith(RobolectricTestRunner.class)
