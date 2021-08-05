@@ -7,6 +7,8 @@ android {
     buildToolsVersion "31.0.0"
 
     defaultConfig {
+        buildConfigField "String", "BASE_URL", "\"https://raw.githubusercontent.com/\""
+
         applicationId rootProject.ext.appId
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
@@ -22,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -35,6 +38,18 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            assets.srcDirs = ['src/test/assets']
+            java.srcDirs += sharedTestDir
+        }
+        androidTest {
+            assets.srcDirs = ['src/androidTest/assets']
+            java.srcDirs += sharedTestDir
+        }
     }
 }
 
@@ -104,6 +119,7 @@ dependencies {
     androidTestImplementation(TestLibraries.espressoIntents)
     androidTestImplementation(TestLibraries.hiltTesting)
     androidTestImplementation(TestLibraries.truth)
+    androidTestImplementation(TestLibraries.okHttpMockWebServer)
 
     // Development dependencies
     debugImplementation(DevLibraries.leakCanary)

@@ -30,7 +30,6 @@ public class PayoneerApiTest {
     @Test
     public void testPayoneerApi() throws IOException {
         MockResponse response = new MockResponse();
-
         String jsonData = FileTestHelpers.loadJson("/listresult.json");
         response.setBody(jsonData);
         response.setResponseCode(200);

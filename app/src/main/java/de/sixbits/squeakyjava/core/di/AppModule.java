@@ -25,11 +25,19 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @Module
 @InstallIn(SingletonComponent.class)
 public class AppModule {
+
     @Provides
     @Singleton
-    Retrofit provideRetrofit() {
+    @BaseUrl
+    String provideBaseUrl() {
+        return BuildConfig.BASE_URL;
+    }
+
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit(@BaseUrl String baseUrl) {
         return new Retrofit.Builder()
-                .baseUrl("https://raw.githubusercontent.com/")
+                .baseUrl(baseUrl)
                 .client(createClient())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

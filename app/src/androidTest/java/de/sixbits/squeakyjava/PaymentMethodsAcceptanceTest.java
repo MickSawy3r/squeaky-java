@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import dagger.hilt.android.testing.HiltAndroidRule;
 import dagger.hilt.android.testing.HiltAndroidTest;
 import de.sixbits.squeakyjava.feature.checkout.PaymentMethodActivity;
+import de.sixbits.squeakyjava.feature.checkout.PaymentMethodFragment;
+import de.sixbits.squeakyjava.helper.HiltTestHelpers;
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4ClassRunner.class)
@@ -37,6 +39,8 @@ public class PaymentMethodsAcceptanceTest {
     }
 
     public void testPaymentMethod() {
+        PaymentMethodFragment fragment = PaymentMethodFragment.getInstance();
 
+        HiltTestHelpers.launchFragmentInHiltContainer(fragment);
     }
 }

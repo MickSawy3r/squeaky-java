@@ -33,7 +33,7 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
 
     @NonNull
     @Contract(" -> new")
-    static PaymentMethodFragment getInstance() {
+    public static PaymentMethodFragment getInstance() {
         return new PaymentMethodFragment();
     }
 
