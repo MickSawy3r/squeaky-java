@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SqueakyJava">
         <activity
-            android:name=".feature.routing.RouterActivity"
+            android:name=".core.navigation.RouterActivity"
             android:exported="true"
             android:noHistory="true"
             android:theme="@style/AppTheme.Translucent">

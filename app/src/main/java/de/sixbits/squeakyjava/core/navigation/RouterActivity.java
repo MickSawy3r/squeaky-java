@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.feature.routing;
+package de.sixbits.squeakyjava.core.navigation;
 
 import android.os.Bundle;
 

@@ -11,7 +11,7 @@ import org.robolectric.Shadows;
 import org.robolectric.shadows.ShadowActivity;
 
 import de.sixbits.platform.core.ContainerActivity;
-import de.sixbits.squeakyjava.feature.routing.RouterActivity;
+import de.sixbits.squeakyjava.core.navigation.RouterActivity;
 
 public class RobolectricAssertions {
 
