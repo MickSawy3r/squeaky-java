@@ -28,13 +28,6 @@ public class AppModule {
 
     @Provides
     @Singleton
-    @BaseUrl
-    String provideBaseUrl() {
-        return BuildConfig.BASE_URL;
-    }
-
-    @Provides
-    @Singleton
     Retrofit provideRetrofit(@BaseUrl String baseUrl) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)

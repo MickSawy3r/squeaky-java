@@ -1,5 +1,6 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,6 +26,11 @@ public class PayoneerApiTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @After
+    public void tearDown() throws IOException {
+        mockWebServer.shutdown();
     }
 
     @Test

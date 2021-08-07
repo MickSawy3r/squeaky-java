@@ -27,7 +27,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
         return _data;
     }
 
-    private Boolean isConnected = false;
+    private Boolean isConnected = true;
     private Boolean isRequestOnQue = false;
 
     @Inject

@@ -118,6 +118,7 @@ dependencies {
     androidTestImplementation(TestLibraries.testRules)
     androidTestImplementation(TestLibraries.espressoIntents)
     androidTestImplementation(TestLibraries.hiltTesting)
+    androidTestImplementation(Libraries.hilt)
     androidTestImplementation(TestLibraries.truth)
     androidTestImplementation(TestLibraries.okHttpMockWebServer)
 
