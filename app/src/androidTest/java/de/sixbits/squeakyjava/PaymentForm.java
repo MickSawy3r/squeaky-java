@@ -28,7 +28,7 @@ import de.sixbits.squeakyjava.feature.checkout.PaymentMethodDataModel;
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4ClassRunner.class)
-public class PaymentFormAcceptanceTest {
+public class PaymentForm {
 
     @Rule
     public ActivityTestRule<PaymentFormActivity> activityTestRule =

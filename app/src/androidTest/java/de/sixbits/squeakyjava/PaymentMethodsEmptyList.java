@@ -37,7 +37,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @HiltAndroidTest
 @UninstallModules(NetworkModule.class)
 @RunWith(AndroidJUnit4ClassRunner.class)
-public class PaymentMethodsEmptyListIntegTest {
+public class PaymentMethodsEmptyList {
     private static final String TAG = "PaymentMethodsAcTest";
 
     @Rule
