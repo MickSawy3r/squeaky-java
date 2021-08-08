@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public abstract class BaseReactiveUseCase {
-  private static final String TAG = "BaseReactiveUseCase";
   private final CompositeDisposable disposables = new CompositeDisposable();
 
   private final ThreadExecutor mThreadExecutor;

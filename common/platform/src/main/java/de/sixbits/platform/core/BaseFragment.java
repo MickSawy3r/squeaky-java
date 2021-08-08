@@ -62,22 +62,4 @@ public abstract class BaseFragment extends Fragment {
             snackBar.show();
         }
     }
-
-    protected void notifyWithAction(
-            String message,
-            @StringRes Integer actionText,
-            Runnable action
-    ) {
-        if (getView() != null) {
-            Snackbar snackBar = Snackbar.make(getView(), message, Snackbar.LENGTH_INDEFINITE);
-            snackBar.setAction(actionText, view -> action.run());
-            if (getContext() != null) {
-                snackBar.setActionTextColor(ContextCompat.getColor(
-                        getContext(),
-                        R.color.colorTextPrimary
-                ));
-            }
-            snackBar.show();
-        }
-    }
 }

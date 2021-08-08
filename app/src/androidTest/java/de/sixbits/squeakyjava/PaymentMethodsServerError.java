@@ -2,9 +2,8 @@ package de.sixbits.squeakyjava;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.CoreMatchers.not;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static de.sixbits.squeakyjava.EspressoIdlingResource.countingIdlingResource;
 
 import androidx.test.espresso.IdlingRegistry;
@@ -36,7 +35,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @UninstallModules(NetworkModule.class)
 @RunWith(AndroidJUnit4ClassRunner.class)
 public class PaymentMethodsServerError {
-    private static final String TAG = "PaymentMethodsAcTest";
 
     @Rule
     public HiltAndroidRule hiltAndroidRule = new HiltAndroidRule(this);
@@ -65,11 +63,8 @@ public class PaymentMethodsServerError {
 
         HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
-        onView(withId(R.id.rv_payment_methods))
-                .check(matches(not(isDisplayed())));
-
-        onView(withId(R.id.ll_empty_list))
-                .check(matches(isDisplayed()));
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+                .check(matches(withText(R.string.failure_server_error)));
     }
 
 
@@ -81,7 +76,7 @@ public class PaymentMethodsServerError {
                                 .addInterceptor(new HttpLoggingInterceptor()
                                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                                 .addInterceptor(NetworkTestHelper.provideMockInterceptor(
-                                        "emptylist.json"))
+                                        "error500.json", 500))
                                 .build()
                 )
                 .addConverterFactory(MoshiConverterFactory.create())

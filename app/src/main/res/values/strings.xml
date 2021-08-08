@@ -14,4 +14,6 @@
     <string name="empty_list">Empty List</string>
     <string name="err_empty_payment_method">Error! No Payment Method Name was found!</string>
     <string name="network_error">Network Error</string>
+    <string name="bad_request">Bad Request!</string>
+    <string name="unknown_error">Unknown Error</string>
 </resources>

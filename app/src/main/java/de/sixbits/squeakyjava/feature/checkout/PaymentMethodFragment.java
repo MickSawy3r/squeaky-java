@@ -1,14 +1,13 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -32,7 +31,6 @@ import de.sixbits.squeakyjava.databinding.FragmentCheckoutBinding;
 
 @AndroidEntryPoint
 public class PaymentMethodFragment extends BaseFragment implements ConnectivityCallback {
-    private static final String TAG = "PaymentMethodFragment";
 
     @NonNull
     @Contract(" -> new")
@@ -139,33 +137,23 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         EspressoIdlingResource.decrement();
     }
 
+    // And the prize for ugliest function goes to :-)
     private void handleFailure(@NonNull Failure failure) {
-        Log.d(TAG, "handleFailure: " + failure.toString());
-        if (failure instanceof Failure.BadRequestError) {
-            notifyWithAction(
-                    R.string.network_error,
-                    R.string.retry,
-                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
-            );
-        } else if (failure instanceof Failure.ConnectivityError) {
+        if (failure instanceof Failure.ConnectivityError) {
+            renderFailureMsg(R.string.not_connected_to_the_internet);
             showNoInternetViews();
+        } else if (failure instanceof Failure.BadRequestError) {
+            renderFailureMsg(R.string.bad_request);
         } else if (failure instanceof Failure.ServerError) {
-            notifyWithAction(
-                    R.string.failure_server_error,
-                    R.string.retry,
-                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
-            );
+            renderFailureMsg(R.string.failure_server_error);
         } else {
-            notifyWithAction(
-                    failure.toString(),
-                    R.string.retry,
-                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
-            );
+            renderFailureMsg(R.string.unknown_error);
         }
+
+        EspressoIdlingResource.decrement();
     }
 
     private void handleLoading(@NonNull Boolean loading) {
-        Log.d(TAG, "handleLoading: " + loading);
         if (loading) {
             showProgress();
         } else {
@@ -174,21 +162,26 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
     }
 
     private void showEmptyListViews() {
-        Log.d(TAG, "showEmptyListViews: ");
         mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
         mUiBinding.llEmptyList.setVisibility(View.VISIBLE);
         mUiBinding.llNoInternet.setVisibility(View.GONE);
     }
 
+    private void renderFailureMsg(@StringRes Integer errorMsg) {
+        notifyWithAction(
+                errorMsg,
+                R.string.retry,
+                () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
+        );
+    }
+
     private void showDataViews() {
-        Log.d(TAG, "showDataViews: ");
         mUiBinding.rvPaymentMethods.setVisibility(View.VISIBLE);
         mUiBinding.llEmptyList.setVisibility(View.GONE);
         mUiBinding.llNoInternet.setVisibility(View.GONE);
     }
 
     private void showNoInternetViews() {
-        Log.d(TAG, "showNoInternetViews: ");
         mUiBinding.rvPaymentMethods.setVisibility(View.GONE);
         mUiBinding.llEmptyList.setVisibility(View.GONE);
         mUiBinding.llNoInternet.setVisibility(View.VISIBLE);

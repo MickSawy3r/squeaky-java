@@ -1,6 +1,5 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,19 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import de.sixbits.platform.core.ViewHelpers;
-import de.sixbits.squeakyjava.EspressoIdlingResource;
 import de.sixbits.squeakyjava.databinding.ItemPaymentMethodBinding;
 
 public class PaymentMethodListAdapter extends ListAdapter<
         PaymentMethodDataModel,
         PaymentMethodListAdapter.PaymentMethodItemVH> {
-    private static final String TAG = "PaymentMethodListAdapter";
 
     private Consumer<PaymentMethodDataModel> mOnClickListener;
 
@@ -58,7 +54,6 @@ public class PaymentMethodListAdapter extends ListAdapter<
     }
 
     public void replaceItems(@NonNull List<PaymentMethodDataModel> newMethods) {
-        Log.d(TAG, "replaceItems: newMethods: " + newMethods.size());
         submitList(newMethods);
     }
 
