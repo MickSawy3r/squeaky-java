@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.helper;
+package de.sixbits.squeakyjava.utils;
 
 import static com.google.common.truth.Truth.assertThat;
 

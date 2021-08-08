@@ -28,30 +28,6 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(@BaseUrl String baseUrl) {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(createClient())
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .build();
-    }
-
-    @NotNull
-    private OkHttpClient createClient()  {
-        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-        if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
-                    .setLevel(HttpLoggingInterceptor.Level.BASIC);
-            okHttpClientBuilder
-                    .addInterceptor(loggingInterceptor);
-        }
-        return okHttpClientBuilder.build();
-    }
-
-
-    @Provides
-    @Singleton
     NetworkHandler provideNetworkHandler(@ApplicationContext Context context) {
         return new NetworkHandler(context);
     }
@@ -70,7 +46,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    PayoneerRepository provideMoviesRepository(
+    PayoneerRepository providePayoneerRepository(
             PayoneerRemoteDataSource dataSource,
             NetworkHandler networkHandler
     ) {

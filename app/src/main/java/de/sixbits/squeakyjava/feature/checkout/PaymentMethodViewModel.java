@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 @HiltViewModel
 public class PaymentMethodViewModel extends BaseViewModel {
-    private static final String TAG = "CheckoutViewModel";
+    private static final String TAG = "PaymentMethodViewModel";
     private final GetAvailablePaymentMethods mGetAvailablePaymentMethods;
 
     private final MutableLiveData<List<PaymentMethodDataModel>> _data = new MutableLiveData<>();
@@ -38,15 +38,18 @@ public class PaymentMethodViewModel extends BaseViewModel {
     void getAvailablePaymentMethods() {
         if (isConnected) {
             setLoading(true);
+            Log.d(TAG, "getAvailablePaymentMethods: isConnected");
             EspressoIdlingResource.increment();
             mGetAvailablePaymentMethods.execute(new PaymentMethodsObserver());
         } else {
             isRequestOnQue = true;
+            Log.d(TAG, "getAvailablePaymentMethods: Not Connected, Queing");
             handleFailure(new Failure.ConnectivityError());
         }
     }
 
     void setIsNetworkAvailable(Boolean connected) {
+        Log.d(TAG, "setIsNetworkAvailable: " + connected);
         isConnected = connected;
 
         if (isRequestOnQue) {

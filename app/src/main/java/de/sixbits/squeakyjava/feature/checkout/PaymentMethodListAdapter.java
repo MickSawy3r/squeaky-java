@@ -1,11 +1,13 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -16,15 +18,19 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.sixbits.platform.core.ViewHelpers;
+import de.sixbits.squeakyjava.EspressoIdlingResource;
 import de.sixbits.squeakyjava.databinding.ItemPaymentMethodBinding;
 
-public class PaymentMethodListAdapter extends RecyclerView.Adapter<PaymentMethodListAdapter.PaymentMethodItemVH> {
-    private final List<PaymentMethodDataModel> mMethods;
+public class PaymentMethodListAdapter extends ListAdapter<PaymentMethodDataModel, PaymentMethodListAdapter.PaymentMethodItemVH> {
+    private static final String TAG = "PaymentMethodListAdapter";
+
     private Consumer<PaymentMethodDataModel> mOnClickListener;
+
+    public static final DiffUtil.ItemCallback<PaymentMethodDataModel> DIFF_CALLBACK = new PaymentMethodDiffUtil();
 
     @Inject
     PaymentMethodListAdapter() {
-        mMethods = new ArrayList<>();
+        super(PaymentMethodListAdapter.DIFF_CALLBACK);
     }
 
     @NotNull
@@ -37,20 +43,17 @@ public class PaymentMethodListAdapter extends RecyclerView.Adapter<PaymentMethod
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull PaymentMethodItemVH holder, int position) {
-        holder.bind(mMethods.get(position), mOnClickListener);
+        holder.bind(getCurrentList().get(position), mOnClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return mMethods.size();
+        return getCurrentList().size();
     }
 
     public void replaceItems(List<PaymentMethodDataModel> newMethods) {
-        mMethods.clear();
-        mMethods.addAll(newMethods);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(
-                new PaymentMethodDiffUtil(this.mMethods, newMethods));
-        diffResult.dispatchUpdatesTo(this);
+        Log.d(TAG, "replaceItems: newMethods: " + newMethods.size());
+        submitList(newMethods);
     }
 
     public void setOnClickListener(Consumer<PaymentMethodDataModel> onItemClick) {

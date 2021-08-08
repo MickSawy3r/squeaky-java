@@ -7,9 +7,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 
-import de.sixbits.squeakyjava.helper.FileTestHelpers;
+import de.sixbits.squeakyjava.utils.FileTestHelpers;
 import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
-import de.sixbits.squeakyjava.helper.PaymentMethodsResponseFactory;
+import de.sixbits.squeakyjava.utils.PaymentMethodsResponseFactory;
 
 public class PaymentMethodMapperTest {
 

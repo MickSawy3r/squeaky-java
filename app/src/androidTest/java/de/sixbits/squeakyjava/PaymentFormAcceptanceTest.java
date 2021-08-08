@@ -1,12 +1,15 @@
 package de.sixbits.squeakyjava;
 
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
-import static com.google.common.truth.Truth.assertThat;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static de.sixbits.squeakyjava.EspressoIdlingResource.countingIdlingResource;
 
 import android.content.Intent;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
@@ -50,12 +53,11 @@ public class PaymentFormAcceptanceTest {
                 getApplicationContext(),
                 new PaymentMethodDataModel("1", "CC", "Url")
         );
-        PaymentFormActivity activity = activityTestRule.launchActivity(intent);
+        activityTestRule.launchActivity(intent);
 
-        TextView tvPayment = activity.findViewById(R.id.tv_payment);
-        assertThat(tvPayment.getVisibility())
-                .isEqualTo(View.VISIBLE);
-        assertThat(tvPayment.getText().toString())
-                .isEqualTo("CC");
+        onView(withId(R.id.tv_payment))
+                .check(matches(isDisplayed()));
+        onView(withId(R.id.tv_payment))
+                .check(matches(withText("CC")));
     }
 }

@@ -1,21 +1,14 @@
-package de.sixbits.squeakyjava.helper;
-
-import android.content.Context;
+package de.sixbits.squeakyjava.utils;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.stream.Stream;
 
 public class FileTestHelpers {
 
-    public static String loadJson(String fileName) throws IOException {
+    public static String loadJson(String fileName) {
         if (fileName.toCharArray()[0] != '/') {
             fileName = "/" + fileName;
         }

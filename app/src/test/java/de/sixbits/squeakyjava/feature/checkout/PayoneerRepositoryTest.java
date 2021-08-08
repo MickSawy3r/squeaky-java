@@ -14,7 +14,7 @@ import java.util.List;
 import de.sixbits.platform.core.Failure;
 import de.sixbits.platform.core.NetworkHandler;
 import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
-import de.sixbits.squeakyjava.helper.PaymentMethodsResponseFactory;
+import de.sixbits.squeakyjava.utils.PaymentMethodsResponseFactory;
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
@@ -78,8 +78,8 @@ public class PayoneerRepositoryTest {
         Response<List<PaymentMethodsResponse>> response = Response.error(
                 403,
                 ResponseBody.create(
-                        MediaType.parse("application/json"),
-                        "{\"key\":[\"somestuff\"]}"
+                        "{\"key\":[\"somestuff\"]}",
+                        MediaType.parse("application/json")
                 )
         );
 
@@ -102,8 +102,8 @@ public class PayoneerRepositoryTest {
         Response<List<PaymentMethodsResponse>> response = Response.error(
                 400,
                 ResponseBody.create(
-                        MediaType.parse("application/json"),
-                        "{\"key\":[\"somestuff\"]}"
+                        "{\"key\":[\"somestuff\"]}",
+                        MediaType.parse("application/json")
                 )
         );
 
@@ -126,8 +126,8 @@ public class PayoneerRepositoryTest {
         Response<List<PaymentMethodsResponse>> response = Response.error(
                 500,
                 ResponseBody.create(
-                        MediaType.parse("application/json"),
-                        "{\"key\":[\"somestuff\"]}"
+                        "{\"key\":[\"somestuff\"]}",
+                        MediaType.parse("application/json")
                 )
         );
 

@@ -1,4 +1,4 @@
-package de.sixbits.squeakyjava.helper;
+package de.sixbits.squeakyjava.utils;
 
 import android.content.ComponentName;
 import android.content.Intent;

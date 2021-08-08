@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config;
 import de.sixbits.squeakyjava.feature.checkout.PaymentFormActivity;
 import de.sixbits.squeakyjava.feature.checkout.PaymentMethodActivity;
 import de.sixbits.squeakyjava.feature.checkout.PaymentMethodDataModel;
-import de.sixbits.squeakyjava.helper.RobolectricAssertions;
+import de.sixbits.squeakyjava.utils.RobolectricAssertions;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(

@@ -32,11 +32,10 @@ ext {
     // Build Plugins
     buildToolsVersion = "4.2.0"
     gradleVersion = "6.7"
-    hiltVersion = "2.37"
+    hiltVersion = "2.38.1"
     realmVersion = "10.6.0"
 
     BuildPlugins = [
-
             androidHilt       : "dagger.hilt.android.plugin",
             kotlinAndroid     : "kotlin-android",
             kotlinKapt        : "kotlin-kapt",
@@ -125,6 +124,7 @@ ext {
     fragmentTestingVersion = "1.3.5"
     testExtensionsVersion = "1.1.1"
     truthVersion = "1.1.3"
+    hamcrestVersion = "2.2"
 
     TestLibraries = [
             coreTesting        : "androidx.arch.core:core-testing:${coreTestingVersion}",
@@ -142,7 +142,8 @@ ext {
             mockitoCore        : "org.mockito:mockito-core:${mockitoVersion}",
             okHttpMockWebServer: "com.squareup.okhttp3:mockwebserver:${okHttpVersion}",
             fragmentTesting    : "androidx.fragment:fragment-testing:${fragmentTestingVersion}",
-            truth              : "com.google.truth:truth:${truthVersion}"
+            truth              : "com.google.truth:truth:${truthVersion}",
+            hamcrest           : "org.hamcrest:hamcrest:${hamcrestVersion}"
     ]
 
     // TestRuntimeLibraries

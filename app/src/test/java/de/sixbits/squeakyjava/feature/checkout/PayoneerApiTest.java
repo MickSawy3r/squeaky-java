@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import de.sixbits.squeakyjava.helper.FileTestHelpers;
+import de.sixbits.squeakyjava.utils.FileTestHelpers;
 import de.sixbits.squeakyjava.feature.checkout.response.PaymentMethodsResponse;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.observers.TestObserver;
@@ -34,7 +34,7 @@ public class PayoneerApiTest {
     }
 
     @Test
-    public void testPayoneerApi() throws IOException {
+    public void testPayoneerApi() {
         MockResponse response = new MockResponse();
         String jsonData = FileTestHelpers.loadJson("/listresult.json");
         response.setBody(jsonData);
