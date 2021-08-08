@@ -1,6 +1,7 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
 import static com.google.common.truth.Truth.assertThat;
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import org.junit.Before;
@@ -93,10 +94,11 @@ public class PaymentMethodViewModelTest {
         );
 
         // And I should not get a loading indication
-        assertThat( viewModel.getLoadingLiveData().getValue()).isFalse();
+        assertThat(viewModel.getLoadingLiveData().getValue()).isFalse();
 
         // And failures should be NetworkFailure
-        assertThat(viewModel.getFailureLiveData().getValue()).isInstanceOf(Failure.NetworkConnection.class);
+        assertThat(viewModel.getFailureLiveData().getValue())
+                .isInstanceOf(Failure.ConnectivityError.class);
     }
 
     @Test
@@ -118,14 +120,14 @@ public class PaymentMethodViewModelTest {
         );
 
         // And failures should be NetworkFailure
-        assertThat(viewModel.getFailureLiveData().getValue()).isInstanceOf(Failure.NetworkConnection.class);
+        assertThat(viewModel.getFailureLiveData().getValue())
+                .isInstanceOf(Failure.ConnectivityError.class);
 
         // When I get internet connectivity
         viewModel.setIsNetworkAvailable(true);
 
         // Then I should request payment methods automatically
-        Mockito.verify(getAvailablePaymentMethods, Mockito.times(1)).execute(
-                Mockito.any()
-        );
+        Mockito.verify(getAvailablePaymentMethods, Mockito.times(1))
+                .execute(Mockito.any());
     }
 }

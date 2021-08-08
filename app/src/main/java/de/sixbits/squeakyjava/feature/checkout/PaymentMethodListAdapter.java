@@ -21,7 +21,9 @@ import de.sixbits.platform.core.ViewHelpers;
 import de.sixbits.squeakyjava.EspressoIdlingResource;
 import de.sixbits.squeakyjava.databinding.ItemPaymentMethodBinding;
 
-public class PaymentMethodListAdapter extends ListAdapter<PaymentMethodDataModel, PaymentMethodListAdapter.PaymentMethodItemVH> {
+public class PaymentMethodListAdapter extends ListAdapter<
+        PaymentMethodDataModel,
+        PaymentMethodListAdapter.PaymentMethodItemVH> {
     private static final String TAG = "PaymentMethodListAdapter";
 
     private Consumer<PaymentMethodDataModel> mOnClickListener;
@@ -44,6 +46,10 @@ public class PaymentMethodListAdapter extends ListAdapter<PaymentMethodDataModel
     @Override
     public void onBindViewHolder(@NonNull @NotNull PaymentMethodItemVH holder, int position) {
         holder.bind(getCurrentList().get(position), mOnClickListener);
+        ViewHelpers.loadFromUrl(
+                holder.itemBinding.ivLogo,
+                getCurrentList().get(position).getLogoUrl()
+        );
     }
 
     @Override
@@ -51,7 +57,7 @@ public class PaymentMethodListAdapter extends ListAdapter<PaymentMethodDataModel
         return getCurrentList().size();
     }
 
-    public void replaceItems(List<PaymentMethodDataModel> newMethods) {
+    public void replaceItems(@NonNull List<PaymentMethodDataModel> newMethods) {
         Log.d(TAG, "replaceItems: newMethods: " + newMethods.size());
         submitList(newMethods);
     }
@@ -70,7 +76,6 @@ public class PaymentMethodListAdapter extends ListAdapter<PaymentMethodDataModel
 
         void bind(PaymentMethodDataModel itemModel, Consumer<PaymentMethodDataModel> onClick) {
             itemBinding.tvMethodName.setText(itemModel.getName());
-            ViewHelpers.loadFromUrl(itemBinding.ivLogo, itemModel.getLogoUrl());
             if (onClick != null) {
                 itemView.setOnClickListener((v) -> onClick.accept(itemModel));
             }

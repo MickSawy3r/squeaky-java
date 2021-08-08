@@ -4,13 +4,14 @@ import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -25,12 +26,11 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 import de.sixbits.platform.core.Failure;
 import de.sixbits.squeakyjava.R;
 import de.sixbits.squeakyjava.RobolectricTest;
-import de.sixbits.squeakyjava.utils.PaymentMethodsResponseFactory;
 import de.sixbits.squeakyjava.utils.HiltTestHelpers;
+import de.sixbits.squeakyjava.utils.PaymentMethodsResponseFactory;
 
 @HiltAndroidTest
 public class PaymentMethodFragmentTest extends RobolectricTest {
-    Context context;
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
@@ -45,7 +45,6 @@ public class PaymentMethodFragmentTest extends RobolectricTest {
     @Before
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        context = getApplicationContext();
 
         when(paymentMethodViewModel.getDataLiveData()).thenReturn(dataLiveData);
         when(paymentMethodViewModel.getFailureLiveData()).thenReturn(failureLiveData);
