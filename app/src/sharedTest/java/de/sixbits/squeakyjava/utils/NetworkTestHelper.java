@@ -9,12 +9,8 @@ import okhttp3.ResponseBody;
 
 public class NetworkTestHelper {
     @NotNull
-    public static Interceptor provideMockInterceptor() {
+    public static Interceptor provideMockInterceptor(String fileName) {
         return chain -> {
-            String uri = chain.request().url().uri().toString();
-
-            String fileName = uri.substring(uri.lastIndexOf("/"));
-
             String payload = FileTestHelpers.loadJson(fileName);
 
             return chain.proceed(chain.request())

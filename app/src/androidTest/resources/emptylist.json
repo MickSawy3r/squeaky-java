@@ -1,0 +1,40 @@
+{
+  "links": {
+    "self": "https://api.integration.oscato.com/pci/v1/6076b2feabe8170009d56de4l7ab1tlvai852jekk4s2h2b7it",
+    "lang": "https://resources.integration.oscato.com/resource/lang/MOBILETEAM/en_US/checkout.json"
+  },
+  "timestamp": "2021-04-14T09:16:46.796+0000",
+  "operation": "LIST",
+  "resultCode": "00000.11.000",
+  "resultInfo": "17 applicable and 0 registered networks are found",
+  "returnCode": {
+    "name": "OK",
+    "source": "GATEWAY"
+  },
+  "status": {
+    "code": "listed",
+    "reason": "listed"
+  },
+  "interaction": {
+    "code": "PROCEED",
+    "reason": "OK"
+  },
+  "identification": {
+    "longId": "6076b2feabe8170009d56de4l7ab1tlvai852jekk4s2h2b7it",
+    "shortId": "05753-51161",
+    "transactionId": "20678"
+  },
+  "networks": {
+    "applicable": []
+  },
+  "operationType": "CHARGE",
+  "style": {
+    "language": "en_US"
+  },
+  "payment": {
+    "reference": "Mobile Team Exercise",
+    "amount": 13,
+    "currency": "EUR"
+  },
+  "integrationType": "MOBILE_NATIVE"
+}

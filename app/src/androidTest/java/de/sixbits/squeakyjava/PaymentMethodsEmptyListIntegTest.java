@@ -5,6 +5,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.not;
 import static de.sixbits.squeakyjava.EspressoIdlingResource.countingIdlingResource;
 import static de.sixbits.squeakyjava.utils.TestUtils.withRecyclerView;
 
@@ -36,7 +37,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @HiltAndroidTest
 @UninstallModules(NetworkModule.class)
 @RunWith(AndroidJUnit4ClassRunner.class)
-public class PaymentMethodsSuccessAcceptanceTest {
+public class PaymentMethodsEmptyListIntegTest {
     private static final String TAG = "PaymentMethodsAcTest";
 
     @Rule
@@ -67,16 +68,12 @@ public class PaymentMethodsSuccessAcceptanceTest {
         HiltTestHelpers.launchFragmentInHiltContainer(fragment);
 
         onView(withId(R.id.rv_payment_methods))
+                .check(matches(not(isDisplayed())));
+
+        onView(withId(R.id.ll_empty_list))
                 .check(matches(isDisplayed()));
-
-        onView(withRecyclerView(R.id.rv_payment_methods)
-                .atPositionOnView(0, R.id.tv_method_name))
-                .check(matches(withText("American Express Test")));
-
-        onView(withRecyclerView(R.id.rv_payment_methods)
-                .atPositionOnView(1, R.id.tv_method_name))
-                .check(matches(withText("Diners Club")));
     }
+
 
     private Retrofit createRetrofitClient() {
         return new Retrofit.Builder()
@@ -85,8 +82,8 @@ public class PaymentMethodsSuccessAcceptanceTest {
                         new OkHttpClient.Builder()
                                 .addInterceptor(new HttpLoggingInterceptor()
                                         .setLevel(HttpLoggingInterceptor.Level.BODY))
-                                .addInterceptor(NetworkTestHelper.
-                                        provideMockInterceptor("listresult.json"))
+                                .addInterceptor(NetworkTestHelper.provideMockInterceptor(
+                                        "emptylist.json"))
                                 .build()
                 )
                 .addConverterFactory(MoshiConverterFactory.create())

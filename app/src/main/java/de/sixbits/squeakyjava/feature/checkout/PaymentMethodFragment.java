@@ -80,6 +80,7 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         setupUI();
         setupListeners();
 
+        EspressoIdlingResource.increment();
         mPaymentMethodViewModel.getAvailablePaymentMethods();
 
         return mUiBinding.getRoot();
@@ -114,19 +115,13 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
 
     private void setupUI() {
         mUiBinding.rvPaymentMethods.setAdapter(mPaymentMethodListAdapter);
-        mUiBinding.rvPaymentMethods.getViewTreeObserver()
-                .addOnGlobalLayoutListener(() -> {
-                    Log.d(TAG, "setupUI: addOnGlobalLayoutListener");
-                    EspressoIdlingResource.decrement();
-                });
     }
 
     private void setupListeners() {
         mPaymentMethodListAdapter.setOnClickListener(paymentMethodDataModel -> {
                     if (getContext() != null) {
                         navigator.showPaymentForm(
-                                getContext(), paymentMethodDataModel
-                        );
+                                getContext(), paymentMethodDataModel);
                     } else {
                         notify(R.string.payment_method_clicked);
                     }
@@ -135,18 +130,16 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
     }
 
     private void renderResult(@NonNull List<PaymentMethodDataModel> methods) {
-        Log.d(TAG, "renderResult: " + methods.size());
         if (methods.size() > 0) {
-            EspressoIdlingResource.increment();
             mPaymentMethodListAdapter.replaceItems(methods);
-            Log.d(TAG, "renderResult: " + mPaymentMethodListAdapter.getItemCount());
             showDataViews();
         } else {
             showEmptyListViews();
         }
+        EspressoIdlingResource.decrement();
     }
 
-    private void handleFailure(Failure failure) {
+    private void handleFailure(@NonNull Failure failure) {
         Log.d(TAG, "handleFailure: " + failure.toString());
         if (failure instanceof Failure.BadRequestError) {
             notifyWithAction(
@@ -157,9 +150,17 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
         } else if (failure instanceof Failure.ConnectivityError) {
             showNoInternetViews();
         } else if (failure instanceof Failure.ServerError) {
-            notify(R.string.failure_server_error);
+            notifyWithAction(
+                    R.string.failure_server_error,
+                    R.string.retry,
+                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
+            );
         } else {
-            notify(failure.toString());
+            notifyWithAction(
+                    failure.toString(),
+                    R.string.retry,
+                    () -> mPaymentMethodViewModel.getAvailablePaymentMethods()
+            );
         }
     }
 

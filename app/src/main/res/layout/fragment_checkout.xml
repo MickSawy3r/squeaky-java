@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="no_internet.json"
+            app:lottie_fileName="empty_list.json"
             app:lottie_loop="true" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
