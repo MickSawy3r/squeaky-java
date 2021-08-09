@@ -1,6 +1,5 @@
 package de.sixbits.squeakyjava.feature.checkout;
 
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -10,8 +9,6 @@ import android.widget.LinearLayout;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -64,7 +61,7 @@ public class PaymentMethodFragmentTest extends RobolectricTest {
         LinearLayout noInternetLayout = fragment.getView().findViewById(R.id.ll_no_internet);
 
         // When I have no internet and request the methods
-        failureLiveData.postValue(new Failure.ConnectivityError());
+        failureLiveData.postValue(new CheckoutFailure.ConnectivityError());
 
         // Then I should see a no internet error message
         assertThat(fragment.getView()).isNotNull();

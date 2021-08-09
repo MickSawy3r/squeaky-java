@@ -15,35 +15,11 @@ public class Failure extends Exception {
         }
     }
 
-    public static class ServerError extends Failure {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Server Error";
-        }
-    }
-
     public static class UnauthorizedError extends Failure {
         @NonNull
         @Override
         public String toString() {
             return "Unauthorized Error";
-        }
-    }
-
-    public static class ConnectivityError extends Failure {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Connectivity Error";
-        }
-    }
-
-    public static class BadRequestError extends Failure {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Bad Network Request";
         }
     }
 
@@ -58,6 +34,6 @@ public class Failure extends Exception {
     /**
      * Extend this class for feature specific failures.
      */
-    abstract static class FeatureFailure extends Failure {
+    abstract static public class FeatureFailure extends Failure {
     }
 }

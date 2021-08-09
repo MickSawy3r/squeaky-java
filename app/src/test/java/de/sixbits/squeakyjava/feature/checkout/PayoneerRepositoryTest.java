@@ -70,7 +70,7 @@ public class PayoneerRepositoryTest {
         );
 
         payoneerRepository.getAvailablePaymentMethods().test()
-                .assertError((err) -> err instanceof Failure.ConnectivityError);
+                .assertError((err) -> err instanceof CheckoutFailure.ConnectivityError);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class PayoneerRepositoryTest {
         );
 
         payoneerRepository.getAvailablePaymentMethods().test()
-                .assertError((err) -> err instanceof Failure.BadRequestError);
+                .assertError((err) -> err instanceof CheckoutFailure.BadRequestError);
     }
 
     @Test
@@ -142,6 +142,6 @@ public class PayoneerRepositoryTest {
         );
 
         payoneerRepository.getAvailablePaymentMethods().test()
-                .assertError((err) -> err instanceof Failure.ServerError);
+                .assertError((err) -> err instanceof CheckoutFailure.ServerError);
     }
 }

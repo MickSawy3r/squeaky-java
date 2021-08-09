@@ -139,12 +139,12 @@ public class PaymentMethodFragment extends BaseFragment implements ConnectivityC
 
     // And the prize for ugliest function goes to :-)
     private void handleFailure(@NonNull Failure failure) {
-        if (failure instanceof Failure.ConnectivityError) {
+        if (failure instanceof CheckoutFailure.ConnectivityError) {
             renderFailureMsg(R.string.not_connected_to_the_internet);
             showNoInternetViews();
-        } else if (failure instanceof Failure.BadRequestError) {
+        } else if (failure instanceof CheckoutFailure.BadRequestError) {
             renderFailureMsg(R.string.bad_request);
-        } else if (failure instanceof Failure.ServerError) {
+        } else if (failure instanceof CheckoutFailure.ServerError) {
             renderFailureMsg(R.string.failure_server_error);
         } else {
             renderFailureMsg(R.string.unknown_error);

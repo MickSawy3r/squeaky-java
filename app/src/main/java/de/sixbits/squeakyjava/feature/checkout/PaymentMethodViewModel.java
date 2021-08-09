@@ -44,7 +44,7 @@ public class PaymentMethodViewModel extends BaseViewModel {
         } else {
             isRequestOnQue = true;
             Log.d(TAG, "getAvailablePaymentMethods: Not Connected, Queing");
-            handleFailure(new Failure.ConnectivityError());
+            handleFailure(new CheckoutFailure.ConnectivityError());
         }
     }
 

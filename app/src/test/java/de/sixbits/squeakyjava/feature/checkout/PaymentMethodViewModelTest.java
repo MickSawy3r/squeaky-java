@@ -98,7 +98,7 @@ public class PaymentMethodViewModelTest {
 
         // And failures should be NetworkFailure
         assertThat(viewModel.getFailureLiveData().getValue())
-                .isInstanceOf(Failure.ConnectivityError.class);
+                .isInstanceOf(CheckoutFailure.ConnectivityError.class);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class PaymentMethodViewModelTest {
 
         // And failures should be NetworkFailure
         assertThat(viewModel.getFailureLiveData().getValue())
-                .isInstanceOf(Failure.ConnectivityError.class);
+                .isInstanceOf(CheckoutFailure.ConnectivityError.class);
 
         // When I get internet connectivity
         viewModel.setIsNetworkAvailable(true);

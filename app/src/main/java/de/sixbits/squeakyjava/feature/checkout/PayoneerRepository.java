@@ -29,7 +29,7 @@ public class PayoneerRepository {
         if (mNetworkHandler.isNetworkAvailable()) {
             return requestCall(mPayoneerRemoteDataSource.getPaymentMethods());
         } else {
-            return Single.error(new Failure.ConnectivityError());
+            return Single.error(new CheckoutFailure.ConnectivityError());
         }
     }
 
@@ -44,10 +44,10 @@ public class PayoneerRepository {
                 }
                 if (httpException.code() >= HttpURLConnection.HTTP_MULT_CHOICE &&
                         httpException.code() < HttpURLConnection.HTTP_INTERNAL_ERROR) {
-                    return Single.error(new Failure.BadRequestError());
+                    return Single.error(new CheckoutFailure.BadRequestError());
                 }
                 if (httpException.code() == HttpURLConnection.HTTP_INTERNAL_ERROR) {
-                    return Single.error(new Failure.ServerError());
+                    return Single.error(new CheckoutFailure.ServerError());
                 }
             }
             return Single.error(new Failure.UnknownFailure());
