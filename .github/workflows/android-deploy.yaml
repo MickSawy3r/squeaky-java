@@ -42,3 +42,13 @@ jobs:
         with:
           name: release-apk
           path: app/build/outputs/apk/release/app-release.apk
+
+      - name: Create release and upload apk
+        uses: underwindfall/create-release-with-debugapk@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          asset_path: app/build/outputs/apk/release/app-release.apk
+          asset_name: release.apk
+          asset_content_type: application/zip
